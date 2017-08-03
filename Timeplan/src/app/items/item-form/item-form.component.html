@@ -1,0 +1,39 @@
+<h3>New Task Form</h3>
+
+    <label class="label">Name: </label>
+
+    <input placeholder="Item Topic" class="input"
+    [(ngModel)]="item.topic"
+    required minlength="2" maxlength="23"
+    #topic='ngModel' autofocus>
+      <input placeholder="Item Group" class="input"
+    [(ngModel)]="item.group"
+    required minlength="2" maxlength="23"
+    #group='ngModel' autofocus>
+      <input placeholder="Item StartDate" class="input"
+    [(ngModel)]="item.startDate"
+    type="date"
+    #startDate='ngModel' autofocus>
+      <input type="date" placeholder="Item StopDate" class="input"
+    [(ngModel)]="item.stopDate"
+  
+    #stopDate='ngModel' autofocus>
+
+
+
+
+    <div *ngIf="topic.dirty">
+      <span *ngIf='topic.errors; then errors else valid'>template renders here...</span>
+    </div>
+
+
+    <button class="button is-primary" (click)='createItem()' [disabled]="!topic.valid">Create</button>
+
+
+<ng-template #valid>
+  <p class="help is-success">looks good!</p>
+</ng-template>
+
+<ng-template #errors>
+  <p class="help is-danger">form contains errors!</p>
+</ng-template>
