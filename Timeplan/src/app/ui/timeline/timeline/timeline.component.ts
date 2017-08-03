@@ -35,7 +35,7 @@ export class TimelineComponent implements OnInit {
 this.itemsList.subscribe(
     item => {
         item.map(itemd =>
- items.add({ content: itemd.topic, start:  itemd.startDate, end: itemd.stopDate } )
+ items.add({ content: itemd.topic, start:  itemd.startDate, end: itemd.stopDate,className: red } )
     )});
     // Configuration for the Timeline
     const  options = {
