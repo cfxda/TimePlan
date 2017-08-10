@@ -19,17 +19,15 @@ import { CoreModule } from './core/core.module';
 import { ItemModule } from './items/shared/item.module';
 
 import { UiModule } from './ui/shared/ui.module';
-import { TimelineComponent } from './ui/timeline/timeline/timeline.component';
-import * as Vis from 'vis';
 ///// End FireStarter
 
 // Angular Material IO
-import {MdDatepickerModule ,  MdInputModule, MdNativeDateModule} from '@angular/material';
+import {MdDatepickerModule ,  MdInputModule, MdNativeDateModule, MdGridListModule} from '@angular/material';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +37,7 @@ import {MdDatepickerModule ,  MdInputModule, MdNativeDateModule} from '@angular/
     ItemModule,
     UiModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    MdDatepickerModule ,  MdInputModule, MdNativeDateModule
+    MdDatepickerModule ,  MdInputModule, MdNativeDateModule,MdGridListModule
   ],
   bootstrap: [
     AppComponent

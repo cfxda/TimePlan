@@ -52,6 +52,7 @@ div.vis-configuration.vis-config-option-container{
 div.vis-configuration.vis-config-button{
     display:block;
     width:495px;
+    
     height:25px;
     vertical-align: middle;
     line-height:25px;
@@ -1306,3 +1307,10 @@ div.vis-color-picker input.vis-range-brightness {
 div.vis-color-picker input.vis-saturation-range {
   width: 289px !important;
 }*/
+
+
+.vis-item.red {
+  color: white;
+  background-color: red;
+  border-color: darkred;
+}

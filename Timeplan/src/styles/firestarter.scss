@@ -69,3 +69,27 @@ body {
   box-shadow: none;
   opacity: .6;
 }
+
+.vis-item.red {
+  color: white;
+  background-color: red;
+  border-color: darkred;
+}
+
+.vis-item.green {
+  color: white;
+  background-color: green;
+  border-color: darkgreen;
+}
+
+.vis-item.blue {
+  color: white;
+  background-color: blue;
+  border-color: darkblue;
+}
+
+.vis.timeline .item {
+      border-color: #acacac;
+      background-color: #efefef;
+      box-shadow: 5px 5px 10px rgba(128,128,128, 0.3);
+    }

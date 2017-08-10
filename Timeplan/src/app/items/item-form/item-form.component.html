@@ -1,24 +1,29 @@
-<h3>New Task Form</h3>
+<h3>Create New Timeline Items</h3>
 
-    <label class="label">Name: </label>
 
-    <input placeholder="Item Topic" class="input"
+  <input   placeholder="Item Topic" class="input"
     [(ngModel)]="item.topic"
     required minlength="2" maxlength="23"
-    #topic='ngModel' autofocus>
-      <input placeholder="Item Group" class="input"
+    #topic='ngModel' autofocus> 
+    
+      <input  placeholder="Item Group" class="input"
     [(ngModel)]="item.group"
     required minlength="2" maxlength="23"
-    #group='ngModel' autofocus>
-      <input placeholder="Item StartDate" class="input"
+    #group='ngModel' autofocus>     
+    
+      <input  mdInput class="input" placeholder="Start Date" required
     [(ngModel)]="item.startDate"
     type="date"
-    #startDate='ngModel' autofocus>
-      <input type="date" placeholder="Item StopDate" class="input"
+    #startDate='ngModel' autofocus> 
+      <input mdInput type="date" placeholder="Stop Date" class="input"
     [(ngModel)]="item.stopDate"
-  
-    #stopDate='ngModel' autofocus>
-
+      #stopDate='ngModel' autofocus>
+<!-- Color <select name="singleSelect" [(ngModel)]="item.style"> -->
+<!--       <option value="red">red</option> -->
+<!--       <option value="blue">blue</option> -->
+<!--        <option value="green">green</option> -->
+      
+<!--     </select><br> -->
 
 
 
@@ -26,8 +31,8 @@
       <span *ngIf='topic.errors; then errors else valid'>template renders here...</span>
     </div>
 
-
-    <button class="button is-primary" (click)='createItem()' [disabled]="!topic.valid">Create</button>
+<br>
+     <button md-raised-button (click)='createItem()' [disabled]="!topic.valid"><md-icon>Create</md-icon></button>
 
 
 <ng-template #valid>
@@ -35,5 +40,5 @@
 </ng-template>
 
 <ng-template #errors>
-  <p class="help is-danger">form contains errors!</p>
+  <p class="help is-danger">Please provide a topic and a date!</p>
 </ng-template>

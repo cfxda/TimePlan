@@ -6,6 +6,7 @@ export class Item {
   stopDate: Date;
   body: string;
   active = true;
+  style: string;
   timeStamp: Date = new Date();
     userId: string;
   

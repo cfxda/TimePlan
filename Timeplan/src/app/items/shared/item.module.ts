@@ -48,6 +48,8 @@ import {
   MdTooltipModule,
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
+import * as Vis from 'vis';
+
 
 @NgModule({
   imports: [
@@ -62,7 +64,7 @@ import { BrowserModule } from '@angular/platform-browser';
     FormsModule,
     HttpModule,
     MdNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
     TimelineComponent,

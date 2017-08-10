@@ -1,20 +1,6 @@
-<h3 [ngClass]="{ 'strike-out': !item.active }">
-  {{ item.topic || 'missing topic' }}
-</h3>
-  Group: {{ item.group || 'missing topic' }}<br>
-  Start: {{ item.startDate || 'missing Start Date' }}<br>
-  Stop: {{ item.stopDate || 'missing Stop Date' }}<br>
+<h4>
+ <b>Topic: </b> {{ item.topic || 'missing topic' }}  Group:{{ item.group || 'missing topic' }}    <span class="button is-danger"  (click)='deleteItem()' style="float: right;">Delete</span>
+</h4>Start:    Duration: {{ item.startDate || 'missing Start Date' }} - {{ item.stopDate || 'missing Stop Date' }}<!-- key: {{ item.$key || 'missing topic' }}
+   style: {{ item.style || 'standard' }}<br>
+ -->
   
-<div class="card-content">
-
-  Task Active?: {{ item.active }}<br>
-  {{ item.timeStamp | date: 'medium' }}
-
-</div>
-
-<div class="card-footer">
-  <span class="button is-small is-info card-footer-item" (click)='updateTimeStamp()'>Update Timestamp</span>
-  <span class="button is-small is-success card-footer-item" *ngIf='item.active' (click)='updateActive(false)'>Mark Complete</span>
-  <span class="button is-small is-warning card-footer-item" *ngIf='!item.active' (click)='updateActive(true)'>Mark Incomplete</span>
-  <span class="button is-small is-danger card-footer-item" (click)='deleteItem()'>Delete</span>
-</div>
