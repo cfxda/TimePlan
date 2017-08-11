@@ -50,6 +50,7 @@ import {
 import { BrowserModule } from '@angular/platform-browser';
 import * as Vis from 'vis';
 
+import {ColorPickerModule} from 'angular4-color-picker';
 
 @NgModule({
   imports: [
@@ -65,6 +66,7 @@ import * as Vis from 'vis';
     HttpModule,
     MdNativeDateModule,
     ReactiveFormsModule,
+    ColorPickerModule
   ],
   declarations: [
     TimelineComponent,

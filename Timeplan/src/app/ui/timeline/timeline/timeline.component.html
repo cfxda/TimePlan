@@ -1,4 +1,29 @@
-  <link href="//cdnjs.cloudflare.com/ajax/libs/vis/4.15.0/vis.css" rel="stylesheet" type="text/css" />
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/vis/4.15.0/vis.css"
+	rel="stylesheet" type="text/css" />
 
 <div id="visualization"></div>
 
+<table>
+	<tr>
+		<td>Font Color</td>
+		<td><input id="fontColor" [(colorPicker)]="fontColor"
+			[style.background]="fontColor" [value]="fontColor" /></td>
+	</tr>
+	<tr>
+		<td>Background Color</td>
+		<td><input id="bgColor" [(colorPicker)]="bgColor"
+			[style.background]="bgColor" [value]="bgColor" /></td>
+	</tr>
+	<tr>
+		<td>Border /Dot Color</td>
+		<td><input id="brdColor" [(colorPicker)]="brdColor"
+			[style.background]="brdColor" [value]="brdColor" /></td>
+	</tr>
+</table>
+
+<div *ngFor="let item of itemsList | async" class="card">
+	<item-detail [item]='item'></item-detail>
+</div>
+
+<button type="button" class="button is-danger" (click)='save()' >Save</button>

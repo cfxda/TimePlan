@@ -24,6 +24,7 @@ import { UiModule } from './ui/shared/ui.module';
 // Angular Material IO
 import {MdDatepickerModule ,  MdInputModule, MdNativeDateModule, MdGridListModule} from '@angular/material';
 
+import {ColorPickerModule} from 'angular4-color-picker';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {MdDatepickerModule ,  MdInputModule, MdNativeDateModule, MdGridListModul
     ItemModule,
     UiModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    MdDatepickerModule ,  MdInputModule, MdNativeDateModule,MdGridListModule
+    MdDatepickerModule ,  MdInputModule, MdNativeDateModule,MdGridListModule,
+    ColorPickerModule
   ],
   bootstrap: [
     AppComponent
