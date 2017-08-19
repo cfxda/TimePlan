@@ -2,16 +2,25 @@
 
 <item-form></item-form>
 
-<h2>Items</h2>
-<div *ngFor="let item of items | async" class="card">
-  <item-detail [item]='item'></item-detail>
-</div>
+<h2>Items List</h2>
 
-
+<table>
+     <thead>
+     <tr>
+     <th>Topic</th>
+     <th>Group</th>
+    <th>Duration</th>
+     <th></th>
+     </tr>
+     </thead>
+        <tbody>
+  <tr *ngFor="let item of items | async ">
+              <item-detail [item]='item'></item-detail>
+            </tr>
+</tbody></table>
 
 
 <button type="button" class="button is-danger" (click)='deleteItems()' >Delete Entire List</button>
 
-<hr>
 
 

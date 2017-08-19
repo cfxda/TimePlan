@@ -1,6 +1,12 @@
-<h4>
- <b>Topic: </b> {{ item.topic || 'missing topic' }}  Group:{{ item.group || 'missing topic' }}    <span class="button is-danger"  (click)='deleteItem()' style="float: right;">Delete</span>
-</h4>Duration: {{ item.startDate || 'missing Start Date' }} - {{ item.stopDate || 'missing Stop Date' }}<!-- key: {{ item.$key || 'missing topic' }}
+  <td> {{item.$key}}</td>
+  <td> {{item.topic}}</td>
+  <td>{{item.group}}</td>
+  <td> {{item.startDate| date: 'dd.MM.yyyy'}} <div *ngIf="item.stopDate">{{ item.stopDate | date: 'dd.MM.yyyy'}}</div>  </td>
+ <td>{{item.style}}</td>
+
+  <td><span class="button is-danger"  (click)='deleteItem()' >Delete</span></td>	
+ <!-- <b>Topic: </b> {{ item.topic || 'missing topic' }}  Group:{{ item.group || 'missing topic' }}    <span class="button is-danger"  (click)='deleteItem()' style="float: right;">Delete</span>
+</h4>Duration: {{ item.startDate || 'missing Start Date' }} - {{ item.stopDate || 'missing Stop Date' }}key: {{ item.$key || 'missing topic' }}
    style: {{ item.style || 'standard' }}<br>
  -->
   

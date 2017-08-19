@@ -13,6 +13,7 @@ export class ItemService {
   item: FirebaseObjectObservable<Item> = null; //   single object
   userId: string;
 
+  
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {

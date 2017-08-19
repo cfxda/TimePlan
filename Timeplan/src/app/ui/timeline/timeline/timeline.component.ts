@@ -13,6 +13,7 @@ import {ColorPickerModule} from 'angular4-color-picker';
   selector: 'timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss']
+   
 })
 
 
@@ -20,7 +21,7 @@ export class TimelineComponent implements OnInit {
 
   constructor(private itemSvc: ItemService) {}
 
-  itemsList: FirebaseListObservable<Item[]>;
+   itemList: FirebaseListObservable<Item[]> = null; 
   
    timeline;
 
@@ -41,9 +42,9 @@ export class TimelineComponent implements OnInit {
      }
   
   ngOnInit() {
-    this.itemsList = this.itemSvc.getItemsList()
+    this.itemList = this.itemSvc.getItemsList()
 
-    
+    const  isTest='TRUE';
       // Create a DataSet (allows two way data-binding)
 
     var groups = new vis.DataSet();
@@ -54,7 +55,9 @@ export class TimelineComponent implements OnInit {
     
     
     var groupscount = 0;
-    this.itemsList.subscribe(
+    
+   //^ if(isTest='')
+    this.itemList.subscribe(
       item => {
         item.map(itemd => {
 
@@ -74,9 +77,9 @@ export class TimelineComponent implements OnInit {
             groupscount++;
           }
           if ((typeof (itemd.stopDate) != "undefined") || (typeof (itemd.stopDate) != "undefined")) //, className: itemd.style
-            visItemsList.add({key: itemd.$key, content: itemd.topic, start: itemd.startDate, end: itemd.stopDate, group: groupsid})
+            visItemsList.update({id: itemd.$key, content: itemd.topic, start: itemd.startDate, end: itemd.stopDate, group: groupsid,style: itemd.style})
           else
-           visItemsList.add({key: itemd.$key, content: itemd.topic, start: itemd.startDate, end: itemd.stopDate, group: groupsid, type: 'point'})
+           visItemsList.update({id: itemd.$key, content: itemd.topic, start: itemd.startDate, end: itemd.stopDate, group: groupsid, type: 'point',style: itemd.style})
 
         })
       });
@@ -84,7 +87,8 @@ export class TimelineComponent implements OnInit {
     
     //necessary since this  is not working in the event
        var del = this.deleteItem.bind(this)
-      var upd = this.itemSvc.updateItem.bind(this)
+      var upd = this.itemList.update.bind(this)
+    var self = this;
         // Configuration for the Timeline
      options = {
 
@@ -95,11 +99,11 @@ export class TimelineComponent implements OnInit {
         del(item.key)
         callback(item)
       },
-//       onMove: function(item, callback) {
-//   
-//        upd(item.key, item)
-//        callback(item)
-//      },
+       onMove: function(item, callback) {
+   
+        upd(item,{startDate: item.start,stopDate: item.start})
+        callback(item)
+      },
 
       margin: {
         item: 20
@@ -121,8 +125,12 @@ export class TimelineComponent implements OnInit {
       const brdColor = (<HTMLInputElement>document.getElementById('brdColor')).value;
       
       var colorC = "color:" + fontColor + ";background-color:" + bgColor + "; border-color:" + brdColor + "; dot-color:" + brdColor + ";" //for now boarder color => transparent
-      visItemsList.update({id: properties.item, style: colorC})
-      this.dataset=this.visItemsList;
+
+//visItemsList.update({id: properties.item, style: colorC})
+      
+    var item=  visItemsList.get(properties.item);
+           self.itemSvc.updateItem(item.id,{ style: colorC})
+     
     });
   
 
