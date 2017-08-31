@@ -22,7 +22,7 @@ import { UiModule } from './ui/shared/ui.module';
 ///// End FireStarter
 
 // Angular Material IO
-import {MdDatepickerModule ,  MdInputModule, MdNativeDateModule, MdGridListModule} from '@angular/material';
+import {MdDatepickerModule ,  MdInputModule, MdNativeDateModule, MdGridListModule, MdTableModule} from '@angular/material';
 
 import {ColorPickerModule} from 'angular4-color-picker';
 
@@ -43,6 +43,6 @@ import {ColorPickerModule} from 'angular4-color-picker';
   ],
   bootstrap: [
     AppComponent
-  ]
+  ]   
 })
 export class AppModule { }

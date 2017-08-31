@@ -25,7 +25,10 @@ export class ItemsListComponent implements OnInit {
   deleteItems() {
     this.itemSvc.deleteAll()
   }
-
+ dItem(key: string) {
+    this.itemSvc.deleteItem(key)
+  }
+  
 
 
 }

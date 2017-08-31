@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "../../core/auth.service";
-
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -43,17 +42,14 @@ export class UserLoginComponent implements OnInit {
 
   /// Anonymous Sign In
 
-  signInAnonymously() {
-    this.auth.anonymousLogin()
-      .then(() => this.afterSignIn());
-  }
+ 
 
 
   /// Shared
 
   private afterSignIn(): void {
     // Do after login stuff here, such router redirects, toast messages, etc.
-    this.router.navigate(['/']);
+    this.router.navigate(['items']);
   }
 
 }

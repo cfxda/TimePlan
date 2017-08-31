@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../core/auth.service";
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'user-form',
@@ -10,10 +11,10 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angula
 export class UserFormComponent implements OnInit {
 
   userForm: FormGroup;
-  newUser = true; // to toggle login or signup form
+  newUser = false; // to toggle login or signup form
   passReset = false; // set to true when password reset is triggered
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {}
+  constructor(private fb: FormBuilder, private auth: AuthService,  private router: Router) {}
 
    ngOnInit(): void {
      this.buildForm();
@@ -29,6 +30,7 @@ export class UserFormComponent implements OnInit {
 
    login(): void {
      this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password'])
+     .then(() => this.afterSignIn());
    }
 
    resetPassword() {
@@ -89,5 +91,15 @@ export class UserFormComponent implements OnInit {
        'maxlength':     'Password cannot be more than 40 characters long.',
      }
    };
+  
+   signInAnonymously() {
+    this.auth.anonymousLogin()
+      .then(() => this.afterSignIn());
+  }
+  
+    private afterSignIn(): void {
+    // Do after login stuff here, such router redirects, toast messages, etc.
+    this.router.navigate(['items']);
+  }
 
 }

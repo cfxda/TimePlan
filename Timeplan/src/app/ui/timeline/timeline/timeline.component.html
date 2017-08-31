@@ -1,41 +1,77 @@
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.20.1/vis.css"
-	rel="stylesheet" type="text/css" />
 
-<div id="visualization"></div>
+<div class="columns">
+	<div class="column">	<input class="button" type="button" id="zoomIn" value="Zoom in" /></div>
+		<div class="column">
+			<input class="button" type="button" id="zoomOut" value="Zoom out" />
+		</div>
+		<div class="column">
+			<input class="button" type="button" id="moveLeft" value="Move left" />
+		</div>
+		<div class="column">
+			<input class="button" type="button" id="moveRight" value="Move right" />
+		</div>
 
-<table>
-	<tr>
-		<td>Font Color</td> 	
-		<td><input id="fontColor" [(colorPicker)]="fontColor"
-			[style.background]="fontColor" [value]="fontColor" /></td>
-	</tr>
-	<tr>
-		<td>Background Color</td>
-		<td><input id="bgColor" [(colorPicker)]="bgColor"
-			[style.background]="bgColor" [value]="bgColor" /></td>
-	</tr>
-	<tr>
-		<td>Border /Dot Color</td>
-		<td><input id="brdColor" [(colorPicker)]="brdColor"
-			[style.background]="brdColor" [value]="brdColor" /></td>
-	</tr>
-</table>
-<br>
+		<div class="column">
+			<button type="button" class="button" (click)='saveAsImage()'>Save
+				as Image</button>
+		</div>
+		<div class="column">
+			<button type="button" class="button" (click)='createPPT()'>
+				<img class="card-img-top" src="../assets/images/ppt.png" width=24px>Create
+				PPT
+			</button>
+		</div>
 
-  <table>
-     <thead>
-     <tr>
-     <th>Topic</th>
-     <th>Group</th>
-    <th>Duration</th>
-     <th></th>
-     </tr>
-     </thead>
-        <tbody>
-  <tr *ngFor="let item of itemList | async ">
-              <item-detail [item]='item'></item-detail>
-            </tr>
-</tbody></table>
- 
-<button type="button" class="button is-danger" (click)='save()' >Save</button>
+	</div>
+	<br>
+	<div id="visualization"></div>
+
+	<br>
+	<div class="columns">
+		<div class="column">
+			Font Color <input id="fontColor" [(colorPicker)]="fontColor"
+				[style.background]="fontColor" [value]="fontColor" />
+		</div>
+
+		<div class="column">
+			Background Color <input id="bgColor" [(colorPicker)]="bgColor"
+				[style.background]="bgColor" [value]="bgColor" />
+		</div>
+		<div class="column">
+			Border /Dot Color <input id="brdColor" [(colorPicker)]="brdColor"
+				[style.background]="brdColor" [value]="brdColor" />
+		</div>
+
+	</div>
+	<br>
+	<table id="itemTable">
+		<thead>
+			<tr>
+
+				<th>Topic</th>
+				<th>Group</th>
+				<th>Duration</th>
+				<th>Color</th>
+				<th></th>
+
+			</tr>
+
+		</thead>
+		<tbody *ngFor="let item of itemList | async">
+			<tr>
+				<td>{{item.topic ||''}}</td>
+				<td>{{item.group || ''}}</td>
+				<td>{{item.startDate| date: 'dd.MM.yyyy'}}
+					<div *ngIf="item.stopDate">{{ item.stopDate | date:
+						'dd.MM.yyyy'}}</div>
+				</td>
+				<td>{{item.style|| 'default'}}</td>
+				<td><span class="button " (click)='dItem(item.$key)'>Delete</span></td>
+
+			</tr>
+		</tbody>
+
+
+	</table>
+	<br>

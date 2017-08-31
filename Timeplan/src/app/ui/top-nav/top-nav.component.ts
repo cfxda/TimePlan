@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger,state,style,animate,transition } from '@angular/animations';
+import { AuthService } from "../../core/auth.service";
 
 @Component({
   selector: 'top-nav',
@@ -27,7 +28,7 @@ export class TopNavComponent implements OnInit {
   // collapse:string = "closed";
   show:boolean = false;
 
-  constructor() { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit() {
   }
@@ -37,5 +38,9 @@ export class TopNavComponent implements OnInit {
     // this.collapse = this.collapse == "open" ? 'closed' : 'open';
 
   }
+    logout() {
+    this.auth.signOut();
+  }
+  
 
 }

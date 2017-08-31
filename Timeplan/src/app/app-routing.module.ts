@@ -10,7 +10,7 @@ import { CoreModule } from './core/core.module'
 import { TimelineComponent } from './ui/timeline/timeline/timeline.component';
 
 const routes: Routes = [
-  { path: '', component: ReadmePageComponent },
+    { path: '', component: ReadmePageComponent },
   { path: 'login', component: UserLoginComponent, },
   { path: 'items', component: ItemsListComponent, canActivate: [AuthGuard]},
   { path: 'timeline', component: TimelineComponent, canActivate: [AuthGuard] }

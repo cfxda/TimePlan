@@ -4,23 +4,38 @@
 
 <h2>Items List</h2>
 
+
 <table>
-     <thead>
+   <thead>
      <tr>
+     
+<!--      <th>Key</th> -->
      <th>Topic</th>
      <th>Group</th>
-    <th>Duration</th>
-     <th></th>
+     <th>Duration</th>
+     <th>Color</th>
+     <th>Button</th>
+     
      </tr>
-     </thead>
-        <tbody>
-  <tr *ngFor="let item of items | async ">
-              <item-detail [item]='item'></item-detail>
-            </tr>
-</tbody></table>
+
+</thead>
+
+<tbody *ngFor="let item of items | async">
+<!--    <td> {{item.$key}}</td> -->
+ <tr> <td> {{item.topic ||''}}</td>
+<td>{{item.group || ''}}</td>
+<td> {{item.startDate| date: 'dd.MM.yyyy'}} <div *ngIf="item.stopDate">{{ item.stopDate | date: 'dd.MM.yyyy'}}</div>  </td>
+<td>{{item.style|| 'default'}}</td>
+ <td><span class="button"  (click)='dItem(item.$key)' >Delete</span></td>
+    
+ </tr>
+  </tbody>
+
+    
+</table>
+
+  
+<br>	
 
 
-<button type="button" class="button is-danger" (click)='deleteItems()' >Delete Entire List</button>
-
-
-
+<button type="button" class="button is-danger" (click)='deleteItem()' >Delete Entire List</button>

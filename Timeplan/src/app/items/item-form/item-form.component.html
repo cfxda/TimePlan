@@ -1,44 +1,80 @@
-<h3>Create New Timeline Items</h3>
+<h3>Create new TimePlan Items</h3>
+<br>
+<div class="columns">
+	<div class="column is-2">Topic:</div>
+	<div class="column 
+    ">
+		<input placeholder="Item Topic" class="input" [(ngModel)]="item.topic"
+			required minlength="2" maxlength="23" #topic='ngModel' autofocus>
+	</div>
+
+</div>
+
+<div class="columns">
+	<div class="column is-2">Group:</div>
+	<div class="column
+    ">
+		<input placeholder="Item Group" class="input" [(ngModel)]="item.group"
+			required minlength="2" maxlength="23" #group='ngModel' autofocus>
+	</div>
+
+</div>
+<div class="columns">
+	<div class="column is-2">From:</div>
+	<div class="column
+    ">
+		<md-input-container id="start"> <input mdInput
+			[mdDatepicker]="picker" placeholder="Choose a date"
+			[(ngModel)]="item.startDate">
+		<button mdSuffix [mdDatepickerToggle]="picker"></button>
+		</md-input-container>
+		<md-datepicker #picker></md-datepicker>
+	</div>
+
+</div>
+<div class="columns">
+	<div class="column is-2">
+		To:<br> 
+	</div>
+	<div class="column is-2">
+		<md-input-container id="stop"> <input mdInput
+			[mdDatepicker]="stopPicker" placeholder="Choose a date "
+			[(ngModel)]="item.stopDate" [min]="item.startDate">
+		<button mdSuffix [mdDatepickerToggle]="stopPicker"></button>
+		</md-input-container>
+		<md-datepicker #stopPicker></md-datepicker>
+	</div>
+
+</div>
 
 
-  <input   placeholder="Item Topic" class="input"
-    [(ngModel)]="item.topic"
-    required minlength="2" maxlength="23"
-    #topic='ngModel' autofocus> 
-    
-      <input  placeholder="Item Group" class="input"
-    [(ngModel)]="item.group"
-    required minlength="2" maxlength="23"
-    #group='ngModel' autofocus>     
-    
-      <input  mdInput class="input" placeholder="Start Date" required
-    [(ngModel)]="item.startDate"
-    type="date"
-    #startDate='ngModel' autofocus> 
-      <input mdInput type="date" placeholder="Stop Date" class="input"
-    [(ngModel)]="item.stopDate"
-      #stopDate='ngModel' autofocus>
+
+
 <!-- Color <select name="singleSelect" [(ngModel)]="item.style"> -->
 <!--       <option value="red">red</option> -->
 <!--       <option value="blue">blue</option> -->
 <!--        <option value="green">green</option> -->
-      
+
 <!--     </select><br> -->
 
 
 
-    <div *ngIf="topic.dirty">
-      <span *ngIf='topic.errors; then errors else valid'>template renders here...</span>
-    </div>
+<div *ngIf="topic.dirty">
+	<span *ngIf='topic.errors; then errors else valid'>template
+		renders here...</span>
+</div>
 
 <br>
-     <button md-raised-button (click)='createItem()' [disabled]="!topic.valid"><md-icon>Create</md-icon></button>
+<button md-raised-button (click)='createItem()'
+	[disabled]="!topic.valid">
+	<md-icon>Create</md-icon>
+</button>
 
 
 <ng-template #valid>
-  <p class="help is-success">looks good!</p>
+<p class="help is-success">looks good!</p>
 </ng-template>
 
 <ng-template #errors>
-  <p class="help is-danger">Please provide a topic and a date!</p>
+<p class="help is-danger">Please provide a topic and a date!</p>
 </ng-template>

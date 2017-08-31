@@ -31,9 +31,6 @@ body {
 
 ///// Social Buttons
 
-.input {
-  margin-bottom: 5px;
-}
 
 .btn-social {
   color: #fff;
@@ -93,3 +90,11 @@ body {
       background-color: #efefef;
       box-shadow: 5px 5px 10px rgba(128,128,128, 0.3);
     }
+
+.tbody {
+         display: table-header-group;
+
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr span{float:left; width:100%; min-width:100%;}

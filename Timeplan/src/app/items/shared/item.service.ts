@@ -4,6 +4,9 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { Item } from './item';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+
+ const defaultStyle ='color:#fff5f5;background-color:#273296; border-color:#fff; dot-color:#fff;'
+
 @Injectable()
 export class ItemService {
 
@@ -40,7 +43,8 @@ export class ItemService {
   // Create a bramd new item
   createItem(item: Item): void  {
         item.userId = this.userId
-        this.items.push(item)
+                         //date is not support in firebase => convert to string , style not applied => non
+        this.items.push({ group: item.group,topic: item.topic,  stopDate: item.stopDate.toISOString(), startDate: item.startDate.toISOString(),style :defaultStyle, timestamp : item.timeStamp, userId: item.userId})
       .catch(error => this.handleError(error))
   }
 

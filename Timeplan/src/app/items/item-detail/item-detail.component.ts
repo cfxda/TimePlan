@@ -16,17 +16,7 @@ export class ItemDetailComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateTimeStamp() {
-    const date = new Date()
-    this.itemSvc.updateItem(this.item.$key, { timeStamp: date })
-  }
 
-  updateActive(value: boolean) {
-    this.itemSvc.updateItem(this.item.$key, { active: value })
-  }
 
-  deleteItem() {
-    this.itemSvc.deleteItem(this.item.$key)
-  }
-
+ 
 }

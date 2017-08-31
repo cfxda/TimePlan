@@ -1,7 +1,7 @@
 
 <form [formGroup]="userForm"  *ngIf="newUser"  (ngSubmit)="signup()">
 
-  <h3>New User Signup</h3> <p class="btn btn-sm btn-secondary" (click)="toggleForm()">Already Registered?</p>
+  <h3>New User Signup</h3>
  
   
 
@@ -32,7 +32,7 @@
 
 <form [formGroup]="userForm"  *ngIf="!newUser"  (ngSubmit)="login()">
 
-  <h3>Existing User Login</h3><p class="btn btn-sm btn-outline-secondary" (click)="toggleForm()">New User?</p>
+  <h3>Existing User Login</h3>
 
 
   <label for="email">Email</label>
@@ -60,3 +60,20 @@
 
 
 </form>
+<hr>
+<div class="columns">
+<div class="column">
+<h3 *ngIf="!newUser" >New User?</h3><h3 *ngIf="newUser" >Already Registered?</h3>
+<button (click)="toggleForm()" class="button button-info" *ngIf="!newUser" >Create Account</button>
+<button (click)="toggleForm()" class="button button-info" *ngIf="newUser" >Login</button>
+
+ <p class="btn btn-sm btn-secondary" (click)="toggleForm()"></p>
+</div>
+<div class="column">
+<h3>Anonymous Login</h3>
+<button (click)="signInAnonymously()" class="button button-info">
+        <i class="fa fa-user-secret fa-lg"></i> Connect Anonymously
+      </button></div>
+</div> 
+
+      
