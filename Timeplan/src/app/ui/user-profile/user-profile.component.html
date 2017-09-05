@@ -16,3 +16,26 @@
         <button class="button" routerLink="/login">Login</button>
 
     </div>
+<div class="columns ">
+	<div class="column is-2 is-offset-1">
+		<div>Font</div>
+		<div>Background</div>
+		<div>Border</div>
+	</div>
+
+	<div class="column" >
+		<div>
+			<input id="fontColor" [(colorPicker)]="Timeline.fontColor"
+				[style.background]="fontColor" [value]="fontColor" />
+		</div>
+		<div>
+			<input id="bgColor" [(colorPicker)]="Timeline.bgColor"
+				[style.background]="bgColor" [value]="bgColor" />
+		</div>
+		<div>
+			<input id="brdColor" [(colorPicker)]="Timeline.brdColor"
+				[style.background]="brdColor" [value]="brdColor" />
+		</div>
+	</div>
+
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../core/auth.service";
-
+import { TimelineComponent } from '../timeline/timeline/timeline.component';
 @Component({
   selector: 'user-profile',
   templateUrl: './user-profile.component.html',
@@ -9,7 +9,7 @@ import { AuthService } from "../../core/auth.service";
 export class UserProfileComponent implements OnInit {
 
 
-  constructor(public auth: AuthService) { }
+  constructor(public auth: AuthService,public Timeline:TimelineComponent) { }
 
   ngOnInit() {
   }

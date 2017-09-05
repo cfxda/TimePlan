@@ -43,8 +43,22 @@ export class ItemService {
   // Create a bramd new item
   createItem(item: Item): void  {
         item.userId = this.userId
+    
+    var start="";
+    var stop="";
+    var groupName="";
+      if(item.startDate!=undefined)
+ start=     item.startDate.toISOString() 
+                   
+    
+if(item.stopDate!=undefined)
+ stop=     item.stopDate.toISOString() 
+  
+    
+   if(item.group!=undefined)
+     groupName= item.group;
                          //date is not support in firebase => convert to string , style not applied => non
-        this.items.push({ group: item.group,topic: item.topic,  stopDate: item.stopDate.toISOString(), startDate: item.startDate.toISOString(),style :defaultStyle, timestamp : item.timeStamp, userId: item.userId})
+        this.items.push({ topic: item.topic, group: groupName,startDate: start,  stopDate: stop, timestamp : item.timeStamp, userId: item.userId})
       .catch(error => this.handleError(error))
   }
 

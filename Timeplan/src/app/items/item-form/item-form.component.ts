@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Item } from '../shared/item';
 import { ItemService } from '../shared/item.service';
+import * as vis from 'vis'
+
 
 @Component({
   selector: 'item-form',
@@ -13,16 +15,25 @@ export class ItemFormComponent implements OnInit {
   item: Item = new Item();
   constructor(private itemSvc: ItemService) { }
 
+   
+
+  
   ngOnInit() {
     //Set start date today
       this.item.startDate =new Date();
     
+
   }
 
   createItem() {
  
+ 
+ 
+ 
     this.itemSvc.createItem(this.item)
     this.item = new Item() // reset item
+          this.item.startDate =new Date();
+    
   }
 
 }

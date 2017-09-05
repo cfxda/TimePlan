@@ -862,7 +862,7 @@ div.vis-network div.vis-navigation div.vis-button:active {
 .vis-item {
   position: absolute;
   color: #1A1A1A;
-  border-color: #97B0F8;
+  border-color: #0e0e0e; //changed
   border-width: 1px;
   background-color: #D5DDF6;
   display: inline-block;
@@ -1120,7 +1120,7 @@ div.vis-network div.vis-navigation div.vis-button:active {
 
 .vis-labelset {
   position: relative;
-
+  
   overflow: hidden;
 
   box-sizing: border-box;

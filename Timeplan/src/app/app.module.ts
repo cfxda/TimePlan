@@ -13,6 +13,7 @@ export const firebaseConfig = environment.firebaseConfig;
 // Core
 import { CoreModule } from './core/core.module';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 // Feature Modules
@@ -22,7 +23,8 @@ import { UiModule } from './ui/shared/ui.module';
 ///// End FireStarter
 
 // Angular Material IO
-import {MdDatepickerModule ,  MdInputModule, MdNativeDateModule, MdGridListModule, MdTableModule} from '@angular/material';
+import {MdDatepickerModule ,  MdInputModule, MdNativeDateModule, MdGridListModule,    
+   MdTableModule,MdCoreModule} from '@angular/material';
 
 import {ColorPickerModule} from 'angular4-color-picker';
 
@@ -38,8 +40,9 @@ import {ColorPickerModule} from 'angular4-color-picker';
     ItemModule,
     UiModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    MdDatepickerModule ,  MdInputModule, MdNativeDateModule,MdGridListModule,
-    ColorPickerModule
+    MdDatepickerModule ,  MdInputModule, MdNativeDateModule,MdGridListModule,MdCoreModule,
+    ColorPickerModule,FormsModule,ReactiveFormsModule
+    
   ],
   bootstrap: [
     AppComponent
