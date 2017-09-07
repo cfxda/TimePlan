@@ -1,3 +1,4 @@
+import { ItemService } from '../../items/shared/item.service';
 import { NgModule }     from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
@@ -14,7 +15,9 @@ import { UserFormComponent }    from '../user-form/user-form.component';
 import { TopNavComponent }      from '../top-nav/top-nav.component';
 import { FooterNavComponent }   from '../footer-nav/footer-nav.component';
 import { ReadmePageComponent }  from '../readme-page/readme-page.component';
+import { MdButtonModule } from '@angular/material';
 
+import {ColorPickerModule} from 'angular4-color-picker';
 
 
 @NgModule({
@@ -24,7 +27,7 @@ import { ReadmePageComponent }  from '../readme-page/readme-page.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,ColorPickerModule, MdButtonModule
   ],
   declarations: [
     UserLoginComponent,
@@ -37,7 +40,10 @@ import { ReadmePageComponent }  from '../readme-page/readme-page.component';
   exports: [
     TopNavComponent,
     FooterNavComponent,
-    UserProfileComponent,
+    UserProfileComponent
+  ],
+  providers: [
+    ItemService
   ]
 })
 export class UiModule { }

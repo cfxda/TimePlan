@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 // import { AngularFire, FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from "angularfire2";
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Item } from './item';
+import { FormControl } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 
@@ -15,9 +16,10 @@ export class ItemService {
   items: FirebaseListObservable<Item[]> = null; //  list of objects
   item: FirebaseObjectObservable<Item> = null; //   single object
   userId: string;
-
+  public bgColor: string = "#127bdc";
+  public fontColor: string = "#000";
+  public brdColor: string = "#RRGGBBAA";
   
-
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
       if (user) this.userId = user.uid
@@ -31,6 +33,7 @@ export class ItemService {
       query: query
     });
     return this.items
+    
   }
 
   // Return a single observable item
@@ -43,7 +46,6 @@ export class ItemService {
   // Create a bramd new item
   createItem(item: Item): void  {
         item.userId = this.userId
-    
     var start="";
     var stop="";
     var groupName="";

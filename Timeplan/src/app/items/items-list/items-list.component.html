@@ -1,40 +1,137 @@
+<h1 class="title">Create new Timeplan items</h1>
+<div class="columns">
+	<div class="column is-1  is-offset-1">
+		<b>Topic:</b>
+	</div>
+	<div class="column">
+
+		<md-input-container class="md-form"> <input
+			placeholder="Topic" mdInput [(ngModel)]="item.topic" required
+			minlength="2" maxlength="23"> </md-input-container>
+
+	</div>
+
+</div>
+
+<div class="columns">
+	<div class="column is-1  is-offset-1">
+		<b>Group:</b>
+	</div>
+	<!-- 	<div class="column"> -->
+	<!-- 		<input placeholder="Item Group" class="input  is-info" [(ngModel)]="item.group" -->
+	<!-- 			 minlength="2" maxlength="23" #topic='ngModel' autofocus> -->
 
 
-<item-form></item-form>
 
-<h2 >Items List</h2>
+	<!-- </div> -->
+	<div class="column">
+		<md-input-container class="md-form"> <input
+			placeholder="Group" type="text" mdInput [formControl]="myControl"
+			[mdAutocomplete]="auto" [(ngModel)]="item.group"> <md-autocomplete
+			#auto="mdAutocomplete"> <md-option
+			*ngFor="let option of options" [value]="option"> {{
+		option.toString() }} </md-option> </md-autocomplete> </md-input-container>
+	</div>
+</div>
+<div class="columns">
+	<div class="column is-1  is-offset-1">
+		<b>From:</b>
+	</div>
+	<div class="column">
+		<md-input-container id="start" class="md-form"> <input
+			mdInput [mdDatepicker]="picker" placeholder="Choose a date"
+			[(ngModel)]="item.startDate" required #topic='ngModel'>
+		<button mdSuffix [mdDatepickerToggle]="picker"></button>
+		</md-input-container>
+		<md-datepicker #picker startView="year" [startAt]="item.startDate"></md-datepicker>
+	</div>
+</div>
+<div class="columns">
+	<div class="column is-1 is-offset-1">
+		<b>To:</b>
+	</div>
+	<div class="column">
+		<md-input-container id="stop" class="md-form"> <input
+			mdInput [mdDatepicker]="stopPicker" [(ngModel)]="item.stopDate"
+			placeholder="Choose a date" [min]="item.startDate">
+		<button mdSuffix [mdDatepickerToggle]="stopPicker"></button>
+		</md-input-container>
+		<md-datepicker #stopPicker startView="year" [startAt]="item.startDate"></md-datepicker>
+	</div>
+</div>
+<div class="columns">
+	<div class="column is-4  is-offset-1">
+		
+	</div>
+	
+	<div class="column">
+		<button md-raised-button (click)='createItem()'
+			[disabled]="!topic.valid">
+			<md-icon>Create</md-icon>
+			
+		</button>
+		
+	</div>
+	<!-- <div *ngIf="topic.dirty">
+				<span *ngIf='topic.errors; then errors else valid'>template
+					renders here...</span>
+			</div> -->
+</div>
+
+
+ 
+
+
+
+
+<ng-template #valid>
+<p class="help is-success">looks good!</p>
+</ng-template>
+
+<ng-template #errors>
+<p class="help is-danger">Please provide a topic and a date!</p>
+
+</ng-template>
+
+
+
+
+<h2>Items List</h2>
 
 
 <table>
-   <thead>
-     <tr>
-     
-<!--      <th>Key</th> -->
-     <th>Topic</th>
-     <th>Group</th>
-     <th>Duration</th>
-     <th>Color</th>
-     <th>Button</th>
-     
-     </tr>
+	<thead>
+		<tr>
 
-</thead>
+			<!--      <th>Key</th> -->
+			<th>Topic</th>
+			<th>Group</th>
+			<th>Duration</th>
+			<!-- <th>Color</th> -->
+			<th>Button</th>
 
-<tbody *ngFor="let item of items | async">
-<!--    <td> {{item.$key}}</td> -->
- <tr> <td> {{item.topic ||''}}</td>
-<td>{{item.group || ''}}</td>
-<td> {{item.startDate| date: 'dd.MM.yyyy'}} <div *ngIf="item.stopDate">{{ item.stopDate | date: 'dd.MM.yyyy'}}</div>  </td>
-<td>{{item.style|| 'default'}}</td>
- <td><span class="button"  (click)='dItem(item.$key)' >Delete</span></td>
-    
- </tr>
-  </tbody>
+		</tr>
 
-    
+	</thead>
+
+	<tbody *ngFor="let item of items | async">
+		<!--    <td> {{item.$key}}</td> -->
+		<tr>
+			<td>{{item.topic ||''}}</td>
+			<td>{{item.group || ''}}</td>
+			<td>{{item.startDate| date: 'dd.MM.yyyy'}} {{ item.stopDate ? "-
+				" + (item.stopDate | date: 'dd.MM.yyyy' ) : "" }}</td>
+			<!-- <td>{{item.style|| 'default'}}</td> -->
+			<td><span class="button" (click)='dItem(item.$key)'>Delete</span></td>
+
+		</tr>
+	</tbody>
+
+
 </table>
 
-	
 
 
-<button md-raised-button (click)='deleteItem()' >Delete Entire List</button>
+
+<button md-raised-button (click)='deleteItems()'>Delete Entire
+	List</button>

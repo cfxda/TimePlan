@@ -5,6 +5,7 @@ import { AngularFireAuthModule} from 'angularfire2/auth';
 
 @NgModule({
   providers: [AuthService],
-  imports:   [AngularFireAuthModule]
+  imports:   [AngularFireAuthModule],
+  declarations: []
 })
 export class CoreModule { }

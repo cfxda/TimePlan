@@ -1,41 +1,55 @@
 
 
-    <!-- User logged in -->
-    <div class="box" *ngIf="auth.currentUser">
-    Username:
-         {{auth.authState.email|| 'Anonymous User'}}
-        <p class="text-truncate"></p>
-        <button class="button" (click)="logout()">Logout</button>
-
-   </div>
-
-    <!-- User NOT logged in -->
-    <div class="box" *ngIf="!auth.currentUser">
-        <h3>Howdy, {{ auth.currentUserDisplayName }}</h3>
-        <p class="card-text">Login to get started...</p>
-        <button class="button" routerLink="/login">Login</button>
-
-    </div>
-<div class="columns ">
-	<div class="column is-2 is-offset-1">
-		<div>Font</div>
-		<div>Background</div>
-		<div>Border</div>
-	</div>
-
-	<div class="column" >
-		<div>
-			<input id="fontColor" [(colorPicker)]="Timeline.fontColor"
-				[style.background]="fontColor" [value]="fontColor" />
-		</div>
-		<div>
-			<input id="bgColor" [(colorPicker)]="Timeline.bgColor"
-				[style.background]="bgColor" [value]="bgColor" />
-		</div>
-		<div>
-			<input id="brdColor" [(colorPicker)]="Timeline.brdColor"
-				[style.background]="brdColor" [value]="brdColor" />
+<!-- User logged in -->
+<div class="box" *ngIf="auth.currentUser">
+	Username: {{auth.authState.email|| 'Anonymous User'}}
+	<p class="text-truncate"></p>
+	<br>
+	<div *ngIf="Location.path() == '/timeline'">
+	<div >Double click on a item
+		to apply custom colors:</div>
+	<div class="columns">
+		<div class="column">Font</div>
+		<div class="column">
+			<input id="fontColor" [(colorPicker)]="itemSvc.fontColor"
+				[style.background]="itemSvc.fontColor" [value]="itemSvc.fontColor" />
 		</div>
 	</div>
+	<div class="columns" >
+
+		<div class="column">Background</div>
+		<div class="column">
+			<input id="bgColor" [(colorPicker)]="itemSvc.bgColor"
+				[style.background]="itemSvc.bgColor" [value]="itemSvc.bgColor" />
+		</div>
+</div>
+<div class="columns">
+		<div class="column">Border</div>
+		<div class="column">
+			<input id="brdColor" [(colorPicker)]="itemSvc.brdColor"
+				[style.background]="itemSvc.brdColor" [value]="itemSvc.brdColor" />
+		</div>
+</div>
+	</div>
+	<br>
+<div class="column" *ngIf="Location.path() != '/timeline'">
+	<button md-raised-button routerLink="/timeline"><md-icon>Show Timeline</md-icon>
+	</button>
+</div>
+<div class="column" *ngIf="Location.path() != '/items'">
+	<button md-raised-button routerLink="/items">
+		<md-icon>Create Item(s)</md-icon>
+	</button>
+</div>
+
 
 </div>
+<div></div>
+<!-- User NOT logged in -->
+<div class="box" *ngIf="!auth.currentUser">
+	<h3>Howdy, {{ auth.currentUserDisplayName }}</h3>
+	<p class="card-text">Login to get started...</p>
+	<button class="button" routerLink="/login">Login</button>
+
+</div>
+

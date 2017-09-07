@@ -23,14 +23,11 @@ import { UiModule } from './ui/shared/ui.module';
 ///// End FireStarter
 
 // Angular Material IO
-import {MdDatepickerModule ,  MdInputModule, MdNativeDateModule, MdGridListModule,    
-   MdTableModule,MdCoreModule} from '@angular/material';
 
-import {ColorPickerModule} from 'angular4-color-picker';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, 
   ],
   imports: [
     BrowserModule,
@@ -40,8 +37,7 @@ import {ColorPickerModule} from 'angular4-color-picker';
     ItemModule,
     UiModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    MdDatepickerModule ,  MdInputModule, MdNativeDateModule,MdGridListModule,MdCoreModule,
-    ColorPickerModule,FormsModule,ReactiveFormsModule
+    FormsModule,ReactiveFormsModule
     
   ],
   bootstrap: [
@@ -49,3 +45,4 @@ import {ColorPickerModule} from 'angular4-color-picker';
   ]   
 })
 export class AppModule { }
+

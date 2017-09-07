@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Item } from '../shared/item';
 import { ItemService } from '../shared/item.service';
-import * as vis from 'vis'
-
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'item-form',
@@ -13,7 +12,7 @@ import * as vis from 'vis'
 export class ItemFormComponent implements OnInit {
 
   item: Item = new Item();
-  constructor(private itemSvc: ItemService) { }
+  constructor(public itemSvc: ItemService) { }
 
    
 

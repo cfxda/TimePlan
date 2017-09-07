@@ -20,7 +20,7 @@ import * as html2canvas from 'html2canvas';
 
 export class TimelineComponent implements OnInit {
 
-  constructor(private itemSvc: ItemService) {}
+  constructor(public itemSvc: ItemService) {}
 
   itemList: FirebaseListObservable<Item[]> = null;
 
@@ -29,9 +29,7 @@ export class TimelineComponent implements OnInit {
 
   showSpinner: boolean = true;
 
-  public bgColor: string = "#127bdc";
-  public fontColor: string = "#000";
-  public brdColor: string = "#RRGGBBAA";
+  
   public showCurrentTime: boolean = false;
   
      styleSet = ['color:#f3f3f3;background-color:#273296; border-color:rgba(18,123,220,0); dot-color:#fff;',
@@ -55,6 +53,7 @@ export class TimelineComponent implements OnInit {
   }
 
   ngOnInit() {
+    
    var  groups = new vis.DataSet();
     
     this.itemList = this.itemSvc.getItemsList()
