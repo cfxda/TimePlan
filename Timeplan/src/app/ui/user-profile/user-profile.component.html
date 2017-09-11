@@ -5,9 +5,11 @@
 	Username: {{auth.authState.email|| 'Anonymous User'}}
 	<p class="text-truncate"></p>
 	<br>
+	
 	<div *ngIf="Location.path() == '/timeline'">
-	<div >Double click on a item
-		to apply custom colors:</div>
+	<md-slide-toggle id="toggle" [(ngModel)]="itemSvc.editColor" color="primary">Change colors</md-slide-toggle>
+
+	<div  *ngIf="itemSvc.editColor == 1">Select: 
 	<div class="columns">
 		<div class="column">Font</div>
 		<div class="column">
@@ -29,7 +31,12 @@
 			<input id="brdColor" [(colorPicker)]="itemSvc.brdColor"
 				[style.background]="itemSvc.brdColor" [value]="itemSvc.brdColor" />
 		</div>
+</div><div>
+	=> click on a item
 </div>
+	</div> 		 
+
+	
 	</div>
 	<br>
 <div class="column" *ngIf="Location.path() != '/timeline'">
@@ -38,7 +45,7 @@
 </div>
 <div class="column" *ngIf="Location.path() != '/items'">
 	<button md-raised-button routerLink="/items">
-		<md-icon>Create Item(s)</md-icon>
+		<md-icon>Create/Edit Item(s)</md-icon>
 	</button>
 </div>
 

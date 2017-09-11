@@ -16,6 +16,7 @@ export class ItemService {
   items: FirebaseListObservable<Item[]> = null; //  list of objects
   item: FirebaseObjectObservable<Item> = null; //   single object
   userId: string;
+  public editColor: boolean = false;
   public bgColor: string = "#127bdc";
   public fontColor: string = "#000";
   public brdColor: string = "#RRGGBBAA";
@@ -38,7 +39,8 @@ export class ItemService {
 
   // Return a single observable item
   getItem(key: string): FirebaseObjectObservable<Item> {
-    const itemPath =  `${this.basePath}/${key}`;
+     if (!this.userId) return;
+    const itemPath =  `${this.basePath}/${this.userId}/${key}`;
     this.item = this.db.object(itemPath)
     return this.item
   }
@@ -59,8 +61,12 @@ if(item.stopDate!=undefined)
     
    if(item.group!=undefined)
      groupName= item.group;
+    
+    if(item.$key == undefined)
+            this.items.push({topic: item.topic, group: groupName,startDate: start,  stopDate: stop, timestamp : item.timeStamp, userId: item.userId})
+    else
                          //date is not support in firebase => convert to string , style not applied => non
-        this.items.push({ topic: item.topic, group: groupName,startDate: start,  stopDate: stop, timestamp : item.timeStamp, userId: item.userId})
+        this.items.push({key:item.$key  , topic: item.topic, group: groupName,startDate: start,  stopDate: stop, timestamp : item.timeStamp, userId: item.userId})
       .catch(error => this.handleError(error))
   }
 

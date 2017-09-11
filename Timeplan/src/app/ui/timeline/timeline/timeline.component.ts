@@ -199,8 +199,10 @@ var style ="";
     this.timeline.setGroups(groups);
 
 
-    this.timeline.on('doubleClick', function(properties) {
+    this.timeline.on('click', function(properties) {
 
+      if(self.itemSvc.editColor)
+        {
       const bgColor = (<HTMLInputElement>document.getElementById('bgColor')).value;
       const fontColor = (<HTMLInputElement>document.getElementById('fontColor')).value;
       const brdColor = (<HTMLInputElement>document.getElementById('brdColor')).value;
@@ -210,7 +212,7 @@ var style ="";
       //visItemsList.update({id: properties.item, style: col      
       var item = visItemsList.get(properties.item);
       self.itemSvc.updateItem(item.id, {style: colorC})
-
+      }
     });
 
     function move(percentage) {

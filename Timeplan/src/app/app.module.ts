@@ -14,6 +14,7 @@ export const firebaseConfig = environment.firebaseConfig;
 import { CoreModule } from './core/core.module';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MdIconModule} from '@angular/material';
 
 
 // Feature Modules

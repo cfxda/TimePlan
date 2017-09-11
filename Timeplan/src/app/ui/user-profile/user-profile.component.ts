@@ -8,11 +8,16 @@ import { Location } from '@angular/common';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
+  
+  
 export class UserProfileComponent implements OnInit {
 
 
+ 
   constructor(public auth: AuthService, public itemSvc: ItemService, public Location: Location) { }
 
+ 
+  
   ngOnInit() {
   }
 
