@@ -62,25 +62,23 @@
 	</div>
 </div>
 <div class="columns">
-	<div class="column is-4  is-offset-1">
-		
-	</div>
-	
+	<div class="column is-4  is-offset-1"></div>
+
 	<div class="column" *ngIf="!item.$key">
 		<button md-raised-button (click)='createItem()'
 			[disabled]="!topic.valid">
 			<md-icon>Create</md-icon>
 		</button>
-		
-			</div>		
+
+	</div>
 	<div class="column" *ngIf="item.$key">
 		<button md-raised-button (click)='updateItem()'
 			[disabled]="!topic.valid">
 			<md-icon>Update</md-icon>
-			
+
 		</button>
-		</div>
-	
+	</div>
+
 	<!-- <div *ngIf="topic.dirty">
 				<span *ngIf='topic.errors; then errors else valid'>template
 					renders here...</span>
@@ -88,7 +86,7 @@
 </div>
 
 
- 
+
 
 
 
@@ -108,46 +106,44 @@
 <h2>Items List</h2>
 
 <div class="columns">
-<div class="column is-offset-1">
-<table>
-	<thead>
-		<tr>
+	<div class="column is-offset-1 is-8">
+		<table>
+			<thead>
+				<tr>
 
-			<!--      <th>Key</th> -->
-			<th>Topic</th>
-			<th>Group</th>
-			<th>Duration</th>
-			<!-- <th>Color</th> -->
-			<th></th>
+					<th>Topic</th>
+					<th>Group</th>
+					<th>Duration</th>
+					<th></th>
 
-		</tr>
+				</tr>
 
-	</thead>
+			</thead>
 
-	<tbody *ngFor="let item of items | async">
-		<!--    <td> {{item.$key}}</td> -->
-		<tr>
-			<td>{{item.topic ||''}}</td>
-			<td>{{item.group || ''}}</td>
-			<td>{{item.startDate| date: 'dd.MM.yyyy'}} {{ item.stopDate ? "-
-				" + (item.stopDate | date: 'dd.MM.yyyy' ) : "" }}</td>
-			<!-- <td>{{item.style|| 'default'}}</td> -->
-						<td><span class="button" (click)='getItem(item.$key)'>Edit</span></td>
-			
-			<td><span class="button" (click)='dItem(item.$key)'>Delete</span></td>
-
-		</tr>
-	</tbody>
+			<tbody *ngFor="let item of items | async">
+				<tr>
+					<td>{{item.topic ||''}}</td>
+					<td>{{item.group || ''}}</td>
+					<td>{{item.startDate| date: 'dd.MM.yyyy'}} {{ item.stopDate ?
+						"- " + (item.stopDate | date: 'dd.MM.yyyy' ) : "" }}</td>
+					<td><span class="button" (click)='getItem(item.$key)'>Edit</span>
+					<span class="button" (click)='dItem(item.$key)'>Delete</span></td>
 
 
-</table>
+				</tr>
+			</tbody>
+
+
+		</table>
 
 
 
 
+
+	</div>
 
 </div>
-
+<div class="column is-11 is-offset-1">
+	<button md-raised-button (click)='deleteItems()'>Delete Entire
+		List</button>
 </div>
-<div class="column is-11 is-offset-1"><button md-raised-button (click)='deleteItems()'>Delete Entire
-	List</button></div>

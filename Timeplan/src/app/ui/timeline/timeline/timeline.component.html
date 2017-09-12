@@ -21,11 +21,11 @@
 		<div class="field is-grouped">
 			<p class="control">
 
-				<button md-raised-button (click)='saveAsImage()'>Save as
+				<button class="button" (click)='saveAsImage()'>Save as
 					Image</button>
 			<p>
 			<p class="control">
-				<button md-raised-button (click)='createPPT()'>
+				<button class="button" (click)='createPPT()'>
 					<img class="card-img-top" src="../assets/images/ppt.png" width=24px>Create
 					PPT
 				</button>
@@ -36,38 +36,4 @@
 </div>
 
 <div id="visualization"></div>
-
 <br>
-
-
-
-<!-- 	<table id="itemTable"> -->
-<!-- 		<thead> -->
-<!-- 			<tr> -->
-
-<!-- 				<th>Topic</th> -->
-<!-- 				<th>Group</th> -->
-<!-- 				<th>Duration</th> -->
-<!-- 				<th>Color</th> -->
-<!-- 				<th></th> -->
-
-<!-- 			</tr> -->
-
-<!-- 		</thead> -->
-<!-- 		<tbody *ngFor="let item of itemList | async"> -->
-<!-- 			<tr> -->
-<!-- 				<td>{{item.topic ||''}}</td> -->
-<!-- 				<td>{{item.group || ''}}</td> -->
-<!-- 				<td>{{item.startDate| date: 'dd.MM.yyyy'}} -->
-<!-- 					<div *ngIf="item.stopDate">{{ item.stopDate | date: -->
-<!-- 						'dd.MM.yyyy'}}</div> -->
-<!-- 				</td> -->
-<!-- 				<td>{{item.style|| 'default'}}</td> -->
-<!-- 				<td><span class="button " (click)='dItem(item.$key)'>Delete</span></td> -->
-
-<!-- 			</tr> -->
-<!-- 		</tbody> -->
-
-
-<!-- </table>
-	<br>-->

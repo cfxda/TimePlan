@@ -5,49 +5,68 @@
 	Username: {{auth.authState.email|| 'Anonymous User'}}
 	<p class="text-truncate"></p>
 	<br>
-	
+
 	<div *ngIf="Location.path() == '/timeline'">
-	<md-slide-toggle id="toggle" [(ngModel)]="itemSvc.editColor" color="primary">Change colors</md-slide-toggle>
+		<md-slide-toggle id="toggle" [(ngModel)]="itemSvc.editColor" 
+			color="primary">Change colors</md-slide-toggle>
 
-	<div  *ngIf="itemSvc.editColor == 1">Select: 
-	<div class="columns">
-		<div class="column">Font</div>
-		<div class="column">
-			<input id="fontColor" [(colorPicker)]="itemSvc.fontColor"
-				[style.background]="itemSvc.fontColor" [value]="itemSvc.fontColor" />
-		</div>
-	</div>
-	<div class="columns" >
+		<div *ngIf="itemSvc.editColor == 1">
+			<div class="columns">
+				<div class="column" *ngIf="itemSvc.colorSelect!='custom'">
+					<md-radio-group [(ngModel)]="itemSvc.colorSelect">
+					<md-radio-button class="column" *ngFor="let col of itemSvc.styleSet" [value]="col" >
+				<div [class]="col[0]">{{col[0]}}</div>	
+			  </md-radio-button>
+			  <div class="column is-2">
+			   <md-radio-button  value="custom">
+					<div class="custom">custom</div>
+					</md-radio-button> 
+					</div>
+			  </md-radio-group>
+				
+ 				</div>
+			</div>
+			<div *ngIf="itemSvc.colorSelect == 'custom'">
+				<div class="columns">
+					<div class="column">Font</div>
+					<div class="column">
+						<input id="fontColor" [(colorPicker)]="itemSvc.fontColor"
+							[style.background]="itemSvc.fontColor"
+							[value]="itemSvc.fontColor" />
+					</div>
+					</div>
+					<div class="columns">
 
-		<div class="column">Background</div>
-		<div class="column">
-			<input id="bgColor" [(colorPicker)]="itemSvc.bgColor"
-				[style.background]="itemSvc.bgColor" [value]="itemSvc.bgColor" />
-		</div>
-</div>
-<div class="columns">
-		<div class="column">Border</div>
-		<div class="column">
-			<input id="brdColor" [(colorPicker)]="itemSvc.brdColor"
-				[style.background]="itemSvc.brdColor" [value]="itemSvc.brdColor" />
-		</div>
-</div><div>
-	=> click on a item
-</div>
-	</div> 		 
+						<div class="column">Background</div>
+						<div class="column">
+							<input id="bgColor" [(colorPicker)]="itemSvc.bgColor"
+								[style.background]="itemSvc.bgColor" [value]="itemSvc.bgColor" />
+						</div>
+					</div>
+					<div class="columns">
+						<div class="column">Border</div>
+						<div class="column">
+							<input id="brdColor" [(colorPicker)]="itemSvc.brdColor"
+								[style.background]="itemSvc.brdColor" [value]="itemSvc.brdColor" />
 
-	
+						</div>
+					</div>
+				</div>
+		</div>
+
+
 	</div>
 	<br>
-<div class="column" *ngIf="Location.path() != '/timeline'">
-	<button md-raised-button routerLink="/timeline"><md-icon>Show Timeline</md-icon>
-	</button>
-</div>
-<div class="column" *ngIf="Location.path() != '/items'">
-	<button md-raised-button routerLink="/items">
-		<md-icon>Create/Edit Item(s)</md-icon>
-	</button>
-</div>
+	<div class="column" *ngIf="Location.path() != '/timeline'">
+		<button class="button" routerLink="/timeline">
+			<md-icon>Show Timeline</md-icon>
+		</button>
+	</div>
+	<div class="column is-1" *ngIf="Location.path() != '/items'">
+		<button class="button" routerLink="/items">
+			<md-icon>Create/Edit Item(s)</md-icon>
+		</button>
+	</div>
 
 
 </div>

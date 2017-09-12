@@ -1,13 +1,4 @@
-.mat-raised-button {
-background-color: #273296 ;
-color: white;
 
-}.button {
-background-color: #273296 ;
-color: white;
-font-weight: bold;
-
-}
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -43,3 +34,13 @@ font-weight: bold;
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
+
+.vis-item.vis-range .vis-item-content:before {
+    top: 0px;
+    background: linear-gradient(to top right, green 50%, transparent 51%);
+}
+.vis-item.vis-range .vis-item-content:after {
+    bottom: 0px;
+    background: linear-gradient(to bottom right, green 50%, transparent 51%);
+}	

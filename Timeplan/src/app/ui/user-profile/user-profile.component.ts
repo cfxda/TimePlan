@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
   
 export class UserProfileComponent implements OnInit {
 
+  public  color : String;
 
  
   constructor(public auth: AuthService, public itemSvc: ItemService, public Location: Location) { }

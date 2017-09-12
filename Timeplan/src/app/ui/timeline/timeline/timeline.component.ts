@@ -31,17 +31,8 @@ export class TimelineComponent implements OnInit {
 
   
   public showCurrentTime: boolean = false;
-  
-     styleSet = ['color:#f3f3f3;background-color:#273296; border-color:rgba(18,123,220,0); dot-color:#fff;',
-                    'color:#f3f3f3;background-color:#37a18b; border-color:rgba(18,123,220,0); dot-color:#fff;'
-                   ,'color:#f3f3f3;background-color:#7a858f; border-color:rgba(18,123,220,0); dot-color:#fff;'
-                   , 'color:#f3f3f3;background-color:#5180ab; border-color:rgba(18,123,220,0); dot-color:#fff;'
-                   , 'color:#000;background-color:#127bdc; border-color:rgba(18,123,220,0); dot-color:#fff;'
-                   , 'color:#000;background-color:#227bdc; border-color:rgba(18,123,220,0); dot-color:#fff;'
-                   , 'color:#000;background-color:#327bdc; border-color:rgba(18,123,220,0); dot-color:#fff;'
-                   , 'color:#000;background-color:#427bdc; border-color:rgba(18,123,220,0); dot-color:#fff;'
-                   , 'color:#000;background-color:#527bdc; border-color:rgba(18,123,220,0); dot-color:#fff;'
-                   , 'color:#000;background-color:#627bdc; border-color:rgba(18,123,220,0); dot-color:#fff;'   ];
+
+     
     
   
   
@@ -86,10 +77,10 @@ var style ="";
             if (getGroup.length != 0)
               {
               groupId = getGroup[0].id;
-              style = this.styleSet[groupId];
+              style = this.itemSvc.styleSet[groupId][1];
             }
             else {
-              style = this.styleSet[groupCount]
+              style = this.itemSvc.styleSet[groupCount][1];
               
               //add styles to group to enable styling
               groups.add({id: groupCount, content: itemd.group });
@@ -203,12 +194,18 @@ var style ="";
 
       if(self.itemSvc.editColor)
         {
+       if(self.itemSvc.colorSelect=='custom')
+         {
       const bgColor = (<HTMLInputElement>document.getElementById('bgColor')).value;
       const fontColor = (<HTMLInputElement>document.getElementById('fontColor')).value;
       const brdColor = (<HTMLInputElement>document.getElementById('brdColor')).value;
 
       var colorC = "color:" + fontColor + ";background-color:" + bgColor + "; border-color:" + brdColor + "; dot-color:" + brdColor + ";" //for now boarder color => transparent
-
+        }
+        else
+         {
+         colorC =self.itemSvc.styleSet.find(x => x[0] == self.itemSvc.colorSelect[0])[1];
+       }
       //visItemsList.update({id: properties.item, style: col      
       var item = visItemsList.get(properties.item);
       self.itemSvc.updateItem(item.id, {style: colorC})

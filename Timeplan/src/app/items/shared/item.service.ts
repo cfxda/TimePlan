@@ -16,10 +16,22 @@ export class ItemService {
   items: FirebaseListObservable<Item[]> = null; //  list of objects
   item: FirebaseObjectObservable<Item> = null; //   single object
   userId: string;
+  public colorSelect: string ="";
   public editColor: boolean = false;
   public bgColor: string = "#127bdc";
   public fontColor: string = "#000";
   public brdColor: string = "#RRGGBBAA";
+  
+  public styleSet =[  ['blue' , 'color:#f3f3f3;background-color:#273296; border-color:rgba(18,123,220,0); dot-color:#fff;'],
+                  ['turq', 'color:#f3f3f3;background-color:#37a18b; border-color:rgba(18,123,220,0); dot-color:#fff;'],
+                  ['gray', 'color:#f3f3f3;background-color:#7a858f; border-color:rgba(18,123,220,0); dot-color:#fff;'],
+                  ['bgra',  'color:#f3f3f3;background-color:#5180ab; border-color:rgba(18,123,220,0); dot-color:#fff;'],
+                  ['pink', 'color:#fff;background-color:#d2145a; border-color:#f7eded; dot-color:#f7eded;'],
+                  ['gree', 'color:#fff;background-color:#079145; border-color:#fff; dot-color:#fff;'],
+                  [ 'oran','color:#fff;background-color:#a15811; border-color:#fff; dot-color:#fff;'],
+                  [ 'gold', 'color:#fff;background-color:#a99a2f; border-color:#fff; dot-color:#fff;'],
+                  ['wine', 'color:#fff;background-color:#874e4e; border-color:#fff; dot-color:#fff;'],
+                  ] ;
   
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
