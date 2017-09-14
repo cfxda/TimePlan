@@ -57,12 +57,12 @@
 
 	</div>
 	<br>
-	<div class="column" *ngIf="Location.path() != '/timeline'">
+	<div class="column" *ngIf="Location.path() == '/items'">
 		<button class="button" routerLink="/timeline">
 			<md-icon>Show Timeline</md-icon>
 		</button>
 	</div>
-	<div class="column is-1" *ngIf="Location.path() != '/items'">
+	<div class="column is-1" *ngIf="Location.path() == '/timeline'">
 		<button class="button" routerLink="/items">
 			<md-icon>Create/Edit Item(s)</md-icon>
 		</button>

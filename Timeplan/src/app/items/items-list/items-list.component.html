@@ -143,7 +143,16 @@
 	</div>
 
 </div>
-<div class="column is-11 is-offset-1">
-	<button md-raised-button (click)='deleteItems()'>Delete Entire
+<div class="columns">
+<div class="column">
+		<button md-raised-button routerLink="/timeline">
+			<md-icon>Show Timeline</md-icon>
+		</button>
+	</div>
+<div class="column">
+
+
+	<button  class="button" (click)='deleteItems()'>Delete Entire
 		List</button>
+</div>
 </div>

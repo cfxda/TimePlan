@@ -5,6 +5,7 @@ import {FirebaseListObservable,FirebaseObjectObservable} from 'angularfire2/data
 import {FormsModule} from '@angular/forms';
 import {FormControl} from '@angular/forms';
 import {DateAdapter, NativeDateAdapter} from '@angular/material';
+import { Location } from '@angular/common';
 //import { FileUploader } from 'ng2-file-upload';
 
 @Component({
@@ -28,30 +29,32 @@ export class ItemsListComponent implements OnInit {
 
   item: Item = new Item();
 
-  constructor(private itemSvc: ItemService, dateAdapter: DateAdapter<NativeDateAdapter>) {
+  constructor(private itemSvc: ItemService, dateAdapter: DateAdapter<NativeDateAdapter>, public Location: Location) {
     dateAdapter.setLocale('de-DE');
   }
 
   updateItem() {
 
+    if(this.item.group)
+      {
     if (this.options.indexOf(this.item.group) == -1)
       this.options.push(this.item.group);
-
-
-    this.itemSvc.updateItem(this.item.$key, this.item)
-    this.item = new Item() // reset item
-    this.item.startDate = new Date();
-
-  }
+    }
+   var itemT=  this.item;
+    this.itemSvc.updateItem(this.item.$key, itemT)
+    this.item =  new Item    
   
-    createItem() {
-
+     }
+  
+    createItem() {  
+      if(this.item.group)
+      {
     if (this.options.indexOf(this.item.group) == -1)
       this.options.push(this.item.group);
-
+      }
 
     this.itemSvc.createItem(this.item)
-    this.item = new Item() // reset item
+    this.item =  new Item();
     this.item.startDate = new Date();
 
   }
@@ -74,14 +77,14 @@ export class ItemsListComponent implements OnInit {
   dItem(key: string) {
     this.itemSvc.deleteItem(key)
   }
-getItem(key: string)
+getItem(key: string)  
   {
 this.itemFB=  this.itemSvc.getItem(key);
-   this.itemFB.subscribe(item => {this.item =  item;
-this.item.startDate =new Date(item.startDate);
-  this.item.stopDate =new Date(item.stopDate)
+this.itemFB.subscribe(itema => {this.item =  itema;
+this.item.startDate =new Date(itema.startDate);
+this.item.stopDate =new Date(itema.stopDate)
   })
-
+  
 }
   
 
