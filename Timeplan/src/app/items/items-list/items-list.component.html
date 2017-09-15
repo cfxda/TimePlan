@@ -45,7 +45,7 @@
 			[(ngModel)]="item.startDate" required #topic='ngModel'>
 		<button mdSuffix [mdDatepickerToggle]="picker"></button>
 		</md-input-container>
-		<md-datepicker #picker startView="year" [startAt]="item.startDate"></md-datepicker>
+		<md-datepicker #picker startView="month" [startAt]="item.startDate"></md-datepicker>
 	</div>
 </div>
 <div class="columns">
@@ -58,7 +58,7 @@
 			placeholder="Choose a date" [min]="item.startDate">
 		<button mdSuffix [mdDatepickerToggle]="stopPicker"></button>
 		</md-input-container>
-		<md-datepicker #stopPicker startView="year" [startAt]="item.startDate"></md-datepicker>
+		<md-datepicker #stopPicker startView="month" [startAt]="item.startDate"></md-datepicker>
 	</div>
 </div>
 <div class="columns">
@@ -127,7 +127,7 @@
 					<td>{{item.startDate| date: 'dd.MM.yyyy'}} {{ item.stopDate ?
 						"- " + (item.stopDate | date: 'dd.MM.yyyy' ) : "" }}</td>
 					<td><span class="button" (click)='getItem(item.$key)'>Edit</span>
-					<span class="button" (click)='dItem(item.$key)'>Delete</span></td>
+						<span class="button" (click)='dItem(item.$key)'>Delete</span></td>
 
 
 				</tr>
@@ -144,15 +144,15 @@
 
 </div>
 <div class="columns">
-<div class="column">
+	<div class="column">
 		<button md-raised-button routerLink="/timeline">
 			<md-icon>Show Timeline</md-icon>
 		</button>
 	</div>
-<div class="column">
+	<div class="column">
 
 
-	<button  class="button" (click)='deleteItems()'>Delete Entire
-		List</button>
-</div>
+		<button class="button" (click)='deleteItems()'>Delete Entire
+			List</button>
+	</div>
 </div>
