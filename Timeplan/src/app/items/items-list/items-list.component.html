@@ -43,7 +43,7 @@
 		<md-input-container id="start" class="md-form"> <input
 			mdInput [mdDatepicker]="picker" placeholder="Choose a date"
 			[(ngModel)]="item.startDate" required #topic='ngModel'>
-		<button mdSuffix [mdDatepickerToggle]="picker"></button>
+						 <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>	
 		</md-input-container>
 		<md-datepicker #picker startView="month" [startAt]="item.startDate"></md-datepicker>
 	</div>
@@ -56,7 +56,7 @@
 		<md-input-container id="stop" class="md-form"> <input
 			mdInput [mdDatepicker]="stopPicker" [(ngModel)]="item.stopDate"
 			placeholder="Choose a date" [min]="item.startDate">
-		<button mdSuffix [mdDatepickerToggle]="stopPicker"></button>
+			 <md-datepicker-toggle mdSuffix [for]="stopPicker"></md-datepicker-toggle>
 		</md-input-container>
 		<md-datepicker #stopPicker startView="month" [startAt]="item.startDate"></md-datepicker>
 	</div>

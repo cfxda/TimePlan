@@ -28,8 +28,7 @@ export class AppDateAdapter extends NativeDateAdapter {
   }
 }
 
-export const APP_DATE_FORMATS =
-{
+export const APP_DATE_FORMATS = {
     parse: {
         dateInput: { month: 'numeric', year: 'numeric', day: 'numeric' },
     },

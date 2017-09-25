@@ -5,7 +5,7 @@ import {ItemService} from '../../../items/shared/item.service';
 import {Component, OnInit, Input} from '@angular/core';
 import {FirebaseListObservable} from 'angularfire2/database';
 import * as vis from 'vis'
-import  PptxGenJS from 'pptxgenjs';
+import PptxGenJS from 'pptxgenjs';
 
 import * as html2canvas from 'html2canvas';
 

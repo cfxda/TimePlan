@@ -14,7 +14,7 @@ export const firebaseConfig = environment.firebaseConfig;
 import { CoreModule } from './core/core.module';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MdIconModule} from '@angular/material';
+import {MdIconModule, MdButtonModule, MdDatepickerModule, MdNativeDateModule, MdAutocompleteModule, MdInputModule, MdSidenavModule} from '@angular/material';
 
 
 // Feature Modules
@@ -38,7 +38,9 @@ import { UiModule } from './ui/shared/ui.module';
     ItemModule,
     UiModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    FormsModule,ReactiveFormsModule
+    FormsModule, ReactiveFormsModule, MdDatepickerModule ,  MdInputModule, MdNativeDateModule ,  MdButtonModule, 
+    MdSidenavModule, 
+    MdAutocompleteModule, 
     
   ],
   bootstrap: [

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger,state,style,animate,transition } from '@angular/animations';
-import { AuthService } from "../../core/auth.service";
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'top-nav',

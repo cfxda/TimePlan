@@ -10,6 +10,6 @@ import { AuthService } from './core/auth.service';
 export class AppComponent {
 
   constructor() {}
-  title = 'FireStarter app works!';
+  title = 'Timeplan';
 
 }

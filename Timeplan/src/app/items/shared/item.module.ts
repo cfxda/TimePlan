@@ -14,7 +14,7 @@ import { ItemFormComponent } from '../item-form/item-form.component';
 import { ItemDetailComponent } from '../item-detail/item-detail.component';
 import { HttpModule } from '@angular/http';
 
-//Fileupload
+// Fileupload
 import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 
 
@@ -70,14 +70,15 @@ import { MD_DATE_FORMATS, DateAdapter} from '@angular/material';
     ReactiveFormsModule,
     FormsModule,
     AngularFireDatabaseModule,
-    MdDatepickerModule ,  MdInputModule, MdNativeDateModule , BrowserAnimationsModule, MdButtonModule, MdSidenavModule,MdAutocompleteModule,  
+    MdDatepickerModule ,  MdInputModule, MdNativeDateModule , BrowserAnimationsModule, MdButtonModule, MdSidenavModule, 
+    MdAutocompleteModule,  
     ReactiveFormsModule, FormsModule,  BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     MdNativeDateModule,
     ReactiveFormsModule,
-    ColorPickerModule,RouterModule
+    ColorPickerModule, RouterModule
   ],
   declarations: [
     TimelineComponent,
@@ -94,7 +95,7 @@ import { MD_DATE_FORMATS, DateAdapter} from '@angular/material';
         },
         {
             provide: MD_DATE_FORMATS, useValue: APP_DATE_FORMATS
-        },ItemService
+        }, ItemService
     ],
   
   

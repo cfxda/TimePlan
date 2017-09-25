@@ -1,12 +1,12 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {ItemService} from '../shared/item.service';
 import {Item} from '../shared/item';
-import {FirebaseListObservable,FirebaseObjectObservable} from 'angularfire2/database';
+import {FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import {FormsModule} from '@angular/forms';
 import {FormControl} from '@angular/forms';
 import {DateAdapter, NativeDateAdapter} from '@angular/material';
 import { Location } from '@angular/common';
-//import { FileUploader } from 'ng2-file-upload';
+// import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'items-list',
@@ -22,7 +22,7 @@ export class ItemsListComponent implements OnInit {
   
  // uploader = new FileUploader({url: `YOUR URL`});
   
-  showSpinner: boolean = true;
+  showSpinner = true;
   
   public options = [];
   public myControl = new FormControl();
@@ -35,8 +35,7 @@ export class ItemsListComponent implements OnInit {
 
   updateItem() {
 
-    if(this.item.group)
-      {
+    if (this.item.group) {
     if (this.options.indexOf(this.item.group) == -1)
       this.options.push(this.item.group);
     }
