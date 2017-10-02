@@ -1,3 +1,4 @@
 # TimePlan
 
-Tryout playground angular
+Time Plan is a tool to generate timelines.
+
