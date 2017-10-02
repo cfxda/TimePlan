@@ -6,6 +6,8 @@ import {FormsModule} from '@angular/forms';
 import {FormControl} from '@angular/forms';
 import {DateAdapter, NativeDateAdapter} from '@angular/material';
 import { Location } from '@angular/common';
+import * as fileSaver from  'file-saver';
+
 // import { FileUploader } from 'ng2-file-upload';
 
 @Component({
@@ -85,6 +87,26 @@ this.item.stopDate =new Date(itema.stopDate)
   })
   
 }
+  exportItems()
+  {
+    
+    let x = document.getElementById('itemtable').innerHTML
+   
+      x.replace('<span _ngcontent-c7="" class="button">Edit</span>', 'd'); 
+           x.replace('Delete', 'd'); 
+    
+          const blob = new Blob([x], {
+            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'
+        });
+    
+           fileSaver.saveAs(blob, 'timeline.xls');
+
+    
+    
+  }
+
+  
+  
   
 
 

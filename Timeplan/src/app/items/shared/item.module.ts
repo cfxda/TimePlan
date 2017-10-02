@@ -62,7 +62,6 @@ import {ColorPickerModule} from 'angular4-color-picker';
 import { MD_DATE_FORMATS, DateAdapter} from '@angular/material';
 
 
-
 @NgModule({
   imports: [
     CommonModule,

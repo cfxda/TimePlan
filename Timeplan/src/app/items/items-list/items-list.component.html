@@ -106,8 +106,8 @@
 <h2>Items List</h2>
 
 <div class="columns">
-	<div class="column is-offset-1 is-8">
-		<table>
+	<div class="column is-offset-1 is-8" id="itemtable"  >
+		<table >
 			<thead>
 				<tr>
 
@@ -115,7 +115,7 @@
 					<th>Group</th>
 					<th>Duration</th>
 					<th></th>
-
+				
 				</tr>
 
 			</thead>
@@ -126,7 +126,7 @@
 					<td>{{item.group || ''}}</td>
 					<td>{{item.startDate| date: 'dd.MM.yyyy'}} {{ item.stopDate ?
 						"- " + (item.stopDate | date: 'dd.MM.yyyy' ) : "" }}</td>
-					<td><span class="button" (click)='getItem(item.$key)'>Edit</span>
+					<td id="buttons"><span class="button" (click)='getItem(item.$key)'>Edit</span>
 						<span class="button" (click)='dItem(item.$key)'>Delete</span></td>
 
 
@@ -147,6 +147,10 @@
 	<div class="column">
 		<button md-raised-button routerLink="/timeline">
 			<md-icon>Show Timeline</md-icon>
+		</button>
+	
+	<button class="button" (click)='exportItems()'>
+			<md-icon>Export items</md-icon>
 		</button>
 	</div>
 	<div class="column">
