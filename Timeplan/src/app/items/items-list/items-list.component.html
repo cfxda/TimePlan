@@ -31,7 +31,7 @@
 			placeholder="Group" type="text" mdInput [formControl]="myControl"
 			[mdAutocomplete]="auto" [(ngModel)]="item.group"> <md-autocomplete
 			#auto="mdAutocomplete"> <md-option
-			*ngFor="let option of options" [value]="option"> {{
+			*ngFor="let option of itemSvc.groupList" [value]="option"> {{
 		option.toString() }} </md-option> </md-autocomplete> </md-input-container>
 	</div>
 </div>
@@ -120,7 +120,7 @@
 
 			</thead>
 
-			<tbody *ngFor="let item of items | async">
+			<tbody *ngFor="let item of items | async ">
 				<tr>
 					<td>{{item.topic ||''}}</td>
 					<td>{{item.group || ''}}</td>

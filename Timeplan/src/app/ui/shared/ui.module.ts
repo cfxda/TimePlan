@@ -15,7 +15,7 @@ import { UserFormComponent } from '../user-form/user-form.component';
 import { TopNavComponent } from '../top-nav/top-nav.component';
 import { FooterNavComponent } from '../footer-nav/footer-nav.component';
 import { ReadmePageComponent } from '../readme-page/readme-page.component';
-import { MdButtonModule, MdSlideToggleModule, MdRadioModule, MdTabsModule} from '@angular/material';
+import { MdButtonModule, MdSlideToggleModule, MdRadioModule, MdTabsModule, MdSelectModule,  MdSliderModule} from '@angular/material';
 
 import {ColorPickerModule} from 'angular4-color-picker';
 
@@ -27,7 +27,8 @@ import {ColorPickerModule} from 'angular4-color-picker';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    BrowserAnimationsModule, ColorPickerModule, MdButtonModule, MdSlideToggleModule, MdRadioModule, MdTabsModule
+    BrowserAnimationsModule, ColorPickerModule, MdButtonModule, MdRadioModule, MdTabsModule, MdSelectModule, MdSliderModule,
+    MdSlideToggleModule,
   ],
   declarations: [
     UserLoginComponent,

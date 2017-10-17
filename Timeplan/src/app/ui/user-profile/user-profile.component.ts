@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../../core/auth.service";
+import { AuthService } from '../../core/auth.service';
 import { ItemService } from '../../items/shared/item.service';
 import { Location } from '@angular/common';
 
@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
   
 export class UserProfileComponent implements OnInit {
 
-  public  color : String;
+  public  color: String;
 
  
   constructor(public auth: AuthService, public itemSvc: ItemService, public Location: Location) { }
@@ -25,5 +25,7 @@ export class UserProfileComponent implements OnInit {
   logout() {
     this.auth.signOut();
   }
+   
 
+  
 }

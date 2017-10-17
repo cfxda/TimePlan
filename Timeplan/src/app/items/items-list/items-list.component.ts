@@ -26,7 +26,7 @@ export class ItemsListComponent implements OnInit {
   
   showSpinner = true;
   
-  public options = [];
+  
   public myControl = new FormControl();
 
   item: Item = new Item();
@@ -38,8 +38,8 @@ export class ItemsListComponent implements OnInit {
   updateItem() {
 
     if (this.item.group) {
-    if (this.options.indexOf(this.item.group) == -1)
-      this.options.push(this.item.group);
+    if (this.itemSvc.groupList.indexOf(this.item.group) == -1)
+      this.itemSvc.groupList.push(this.item.group);
     }
    var itemT=  this.item;
     this.itemSvc.updateItem(this.item.$key, itemT)
@@ -50,8 +50,8 @@ export class ItemsListComponent implements OnInit {
     createItem() {  
       if(this.item.group)
       {
-    if (this.options.indexOf(this.item.group) == -1)
-      this.options.push(this.item.group);
+    if (this.itemSvc.groupList.indexOf(this.item.group) == -1)
+      this.itemSvc.groupList.push(this.item.group);
       }
 
     this.itemSvc.createItem(this.item)
@@ -61,9 +61,9 @@ export class ItemsListComponent implements OnInit {
   }
   ngOnInit() {
     this.item.startDate = new Date();
-
+this.itemSvc.groupList = [];
+    
     this.items = this.itemSvc.getItemsList()
-    this.items.subscribe(items => items.forEach(item => {if (this.options.indexOf(item.group) == -1) {this.options.push(item.group)} }))
 
 
 

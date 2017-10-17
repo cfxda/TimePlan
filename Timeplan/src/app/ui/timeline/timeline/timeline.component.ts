@@ -21,36 +21,56 @@ import * as fileSaver from 'file-saver';
 
 export class TimelineComponent implements OnInit {
 
-  constructor(public itemSvc: ItemService) {}
 
   itemList: FirebaseListObservable<Item[]> = null;
 
   timeline;
-
-
-  showSpinner: boolean = true;
-
-
-  public showCurrentTime: boolean = false;
-
-
-
-
-
-
   container;
 
+  showSpinner = true;
+  public showCurrentTime = false;
+
+  constructor(public itemSvc: ItemService) {}
+
+
+
+
+
+onChange($event)
+  {
+//       if (!this.itemSvc.filter) {
+//      this.timeline.setGroups(this.itemSvc.groups);
+//    }else {
+      let filter = this.itemSvc.selectedGroup;
+   if(filter.length)
+     {
+      this.timeline.setGroups(this.itemSvc.groups.get({
+        filter: function(item) {
+          return (filter.includes(item.content));
+        }
+     }))
+  }
+  else
+     {
+   this.timeline.setGroups(this.itemSvc.groups);
+   }
+//   }
+   this.timeline.redraw()
+ }
+
+
+
   save() {
-    let supera = this.timeline.itemsData();
+    const supera = this.timeline.itemsData();
   }
 
   ngOnInit() {
-
-    let groups = new vis.DataSet();
+this.itemSvc.groupList = []
+    this.itemSvc.groups = new vis.DataSet();
+    // let groups = new vis.DataSet();
 
     this.itemList = this.itemSvc.getItemsList()
 
-    const isTest = 'TRUE';
     // Create a DataSet (allows two way data-binding)
 
 
@@ -60,16 +80,20 @@ export class TimelineComponent implements OnInit {
     let groupCount = 0;
 
 
-    let style = "";
-    //^ if(isTest='')
+    let style = '';
     if (visItemsList.length == 0) {
 
       this.itemList.subscribe(
         item => {
           item.map(itemd => {
+
+            //FilTER TODO
+
+
+
             let groupId;
 
-            let getGroup = groups.get({
+            let getGroup = this.itemSvc.groups.get({
               fields: ['id', 'style'],
               filter: function(item) {
                 return (item.content == itemd.group);
@@ -83,7 +107,7 @@ export class TimelineComponent implements OnInit {
               style = this.itemSvc.styleSet[groupCount][1];
 
               //add styles to group to enable styling
-              groups.add({id: groupCount, content: itemd.group});
+              this.itemSvc.groups.add({id: groupCount, content: itemd.group, value: groupCount});
               groupId = groupCount;
 
               groupCount++;
@@ -104,9 +128,12 @@ export class TimelineComponent implements OnInit {
 
               visItemsList.update({id: itemd.$key, content: itemd.topic, start: new Date(itemd.startDate), group: groupId, type: 'point', style: 'color:#000;'})
             }
-          })
+          }
+          )
+
         }
       );
+
     }
 
 
@@ -119,25 +146,28 @@ export class TimelineComponent implements OnInit {
       width: '1300px',
       selectable: true,
       showCurrentTime: this.showCurrentTime,
-
-      editable: {
-        add: false,         // add new items by double tapping
-        updateTime: false,  // drag items horizontally
-        updateGroup: false, // drag items from one group to another
-        remove: false,
-        overrideItems: true  // allow these options to override item.editable
+      groupOrder: function(a, b) {
+        return a.value - b.value;
       },
+      groupOrderSwap: function(a, b, groups) {
+        var v = a.value;
+        a.value = b.value;
+        b.value = v;
+      },
+      orientation: 'both',
+      editable: false,
+      groupEditable: true,
       autoResize: true,
-      onRemove: function(item, callback) {
-
-        self.itemSvc.deleteItem(item.key)
-        callback(item)
-      },
-      onAddGroup: function(item, callback) {
-
-        self.itemSvc.updateItem(item.id, {group: item.group})
-        callback(item)
-      },
+      margin: {axis: 5, item: {vertical: 5, horizontal: 0}}//      onRemove: function(item, callback) {
+      //
+      //        self.itemSvc.deleteItem(item.key)
+      //        callback(item)
+      //      },
+      //      onAddGroup: function(item, callback) {
+      //
+      //        self.itemSvc.updateItem(item.id, {group: item.group})
+      //        callback(item)
+      //      },
 
 
       //         onUpdate: function(item, callback) {
@@ -157,49 +187,63 @@ export class TimelineComponent implements OnInit {
       //        callback(item)
       //      },
 
-      onMove: function(item, callback) {
+      //      onMove: function(item, callback) {
+      //
+      //        if ((typeof (item.start) != "undefined") && (typeof (item.stop) != "undefined")) {
+      //          self.itemSvc.updateItem(item.id, {startDate: item.start, stopDate: item.stop})
+      //        }
+      //        else if (typeof (item.start) != "undefined") {
+      //          self.itemSvc.updateItem(item.id, {startDate: item.start})
+      //        }
+      //        else if (typeof (item.stop) != "undefined") {
+      //     self.itemSvc.updateItem(item.id, {stopDate: item.stop})
+      //        }
+      //
+      //        callback(item)
+      //      },
 
-        if ((typeof (item.start) != "undefined") && (typeof (item.stop) != "undefined")) {
-          self.itemSvc.updateItem(item.id, {startDate: item.start, stopDate: item.stop})
-        }
-        else if (typeof (item.start) != "undefined") {
-          self.itemSvc.updateItem(item.id, {startDate: item.start})
-        }
-        else if (typeof (item.stop) != "undefined") {
-          self.itemSvc.updateItem(item.id, {stopDate: item.stop})
-        }
-
-        callback(item)
-      },
-
-      margin: {
-        item: 20
-      }
+     
     }
 
     this.container = document.getElementById('visualization');
 
 
 
-
     // Create a Timeline
     this.timeline = new vis.Timeline(this.container, visItemsList, options);
 
-    this.timeline.setGroups(groups);
+    
+    //filter groups in timeline
+     let filter = this.itemSvc.selectedGroup
+    if(filter.length)
+      {    
+       this.timeline.setGroups(this.itemSvc.groups.get({
+        filter: function(item) {
+          return (filter.includes(item.content));
+        }
+      }))
+    }
+     else
+      {
+        this.timeline.setGroups(this.itemSvc.groups)
+    }
+    
+
+
+    
 
 
     this.timeline.on('click', function(properties) {
-let colorC;
+      let colorC;
       if (self.itemSvc.editColor) {
-        if (self.itemSvc.colorSelect == 'custom') {
+        if (self.itemSvc.colorSelect === 'custom') {
           const bgColor = (<HTMLInputElement>document.getElementById('bgColor')).value;
           const fontColor = (<HTMLInputElement>document.getElementById('fontColor')).value;
           const brdColor = (<HTMLInputElement>document.getElementById('brdColor')).value;
-
-           colorC = "color:" + fontColor + ";background-color:" + bgColor + "; border-color:" + brdColor + '; dot-color:' + brdColor + ";" //for now boarder color => transparent
-        }
-        else {
-          colorC = self.itemSvc.styleSet.find(x => x[0] == self.itemSvc.colorSelect[0])[1];
+          // for now boarder color => transparent
+          colorC = 'color:' + fontColor + ';background-color:' + bgColor + '; border-color:' + brdColor + '; dot-color:' + brdColor + ';'
+        }else {
+          colorC = self.itemSvc.styleSet.find(x => x[0] === self.itemSvc.colorSelect[0])[1];
         }
         //visItemsList.update({id: properties.item, style: col      
         const item = visItemsList.get(properties.item);
@@ -216,11 +260,10 @@ let colorC;
         end: range.end.valueOf() - interval * percentage
       });
     }
-    document.getElementById('zoomIn').onclick = function() {self.timeline.zoomIn(0.2); };
-    document.getElementById('zoomOut').onclick = function() {self.timeline.zoomOut(0.2); };
-    document.getElementById('moveLeft').onclick = function() {move(-0.2); };
-    document.getElementById('moveRight').onclick = function() {move(0.2); };
-
+    document.getElementById('zoomIn').onclick = function() {self.timeline.zoomIn(0.8)}
+    document.getElementById('zoomOut').onclick = function() {self.timeline.zoomOut(0.8)}
+    document.getElementById('moveLeft').onclick = function() {move(0.4)}
+    document.getElementById('moveRight').onclick = function() {move(-0.4)}
   }
   dItem(key: string) {
     this.itemSvc.deleteItem(key);
@@ -294,5 +337,10 @@ let colorC;
       slide.addImage({data: link, x: 0.1, y: 0.1, w: WC, h: HC});
       pptx.save('Your Timeline');
     })
+  }
+  changeColor(col)
+  {
+  this.itemSvc.colorSelect === col;
+
   }
 }

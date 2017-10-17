@@ -21,37 +21,7 @@ import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 // Angular Material IO
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MdAutocompleteModule,
-  MdButtonModule,
-  MdButtonToggleModule,
-  MdCardModule,
-  MdCheckboxModule,
-  MdChipsModule,
-  MdCoreModule,
-  MdDatepickerModule,
-  MdDialogModule,
-  MdExpansionModule,
-  MdGridListModule,
-  MdIconModule,
-  MdInputModule,
-  MdListModule,
-  MdMenuModule,
-  MdNativeDateModule,
-  MdPaginatorModule,
-  MdProgressBarModule,
-  MdProgressSpinnerModule,
-  MdRadioModule,
-  MdRippleModule,
-  MdSelectModule,
-  MdSidenavModule,
-  MdSliderModule,
-  MdSlideToggleModule,
-  MdSnackBarModule,
-  MdSortModule,
-  MdTableModule,
-  MdTabsModule,
-  MdToolbarModule,
-  MdTooltipModule,
+
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import * as Vis from 'vis';
@@ -59,24 +29,29 @@ import * as Vis from 'vis';
 import { RouterModule } from '@angular/router'
 import {ColorPickerModule} from 'angular4-color-picker';
 
-import { MD_DATE_FORMATS, DateAdapter} from '@angular/material';
+import { MD_DATE_FORMATS, DateAdapter, MdFormFieldModule, MdInputModule, MdButtonModule, MdRadioModule, MdSelectModule, MdTabsModule, MdSliderModule, MdSlideToggleModule, MdAutocompleteModule, MdDatepicker, MdDatepickerModule} from '@angular/material';
 
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    ReactiveFormsModule,
+    
     FormsModule,
+        ReactiveFormsModule,
+    
     AngularFireDatabaseModule,
-    MdDatepickerModule ,  MdInputModule, MdNativeDateModule , BrowserAnimationsModule, MdButtonModule, MdSidenavModule, 
-    MdAutocompleteModule,  
-    ReactiveFormsModule, FormsModule,  BrowserModule,
-    BrowserAnimationsModule,
+  CommonModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule, 
+    BrowserAnimationsModule, ColorPickerModule, MdButtonModule, MdRadioModule, MdTabsModule, 
+    MdSelectModule, MdSliderModule, MdAutocompleteModule, MdDatepickerModule, MdInputModule,
+    MdSlideToggleModule,
     FormsModule,
     HttpModule,
-    MdNativeDateModule,
-    ReactiveFormsModule,
+     
     ColorPickerModule, RouterModule
   ],
   declarations: [
@@ -84,7 +59,6 @@ import { MD_DATE_FORMATS, DateAdapter} from '@angular/material';
     ItemsListComponent,
     ItemFormComponent,
     ItemDetailComponent,
-      FileDropDirective, FileSelectDirective
     
     
   ],

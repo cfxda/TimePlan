@@ -1,24 +1,22 @@
-<div class="columns">
-	<div class="column">
-		<div class="field is-grouped">
-			<p class="control">
-				<input class="button" type="button" id="zoomIn" value="+" />
-			</p>
-			<p class="control">
-				<input class="button " type="button" id="zoomOut" value="-" />
-			</p>
-			<p class="control">
-				<input class="button" type="button" id="moveLeft" value=" <-" />
-			</p>
-			<p class="control">
-
-				<input class="button" type="button" id="moveRight" value=" ->" />
-			</p>
-		</div>
+<div class="columns"><div class="column is-8">
+		<md-slide-toggle id="toggle" [(ngModel)]="itemSvc.editColor"
+			color="primary">Change colors</md-slide-toggle> 
+			&#x2007;&#x2007;
+<md-select  multiple="true" floatPlaceholder="never"
+				placeholder="Filter groups" type="text" md-select
+				[(ngModel)]="itemSvc.selectedGroup"
+				(ngModelChange)="onChange($event)"><md-option
+				*ngFor="let group of itemSvc.groupList" [value]="group">{{group}}</md-option></md-select>
 	</div>
-	<div class="column is-offset-5">
- 
+
+
+
+
+	<div class="column is-offset-1">
+
 		<div class="field is-grouped">
+		
+			
 			<p class="control">
 
 				<button class="button" (click)='saveAsImage()'>Save as
@@ -30,10 +28,60 @@
 					PPT
 				</button>
 			</p>
-			
+
 		</div>
 	</div>
 </div>
+<div class="columns">
+	<div class="column">
 
-<div id="visualization"></div>
-<br>
+		<div *ngIf="itemSvc.editColor == 1">
+			<div class="columns" *ngIf="itemSvc.colorSelect != 'custom'">
+				<div [class]="col[0]" *ngFor="let col of itemSvc.styleSet"
+					(click)="this.itemSvc.colorSelect=col">&#x2007;&#x2007;</div>
+				<a class="colorLink" (click)="this.itemSvc.colorSelect='custom'">custom</a>
+				<div >
+		<div [class]="itemSvc.styleSet">Current color</div>
+			</div>
+			</div>
+						
+			<div *ngIf="itemSvc.colorSelect == 'custom'">
+				<div class="columns">
+		
+					<div class="column is-half">Font			
+						<input id="fontColor" [(colorPicker)]="itemSvc.fontColor"
+						[style.background]="itemSvc.fontColor"
+							[value]="itemSvc.fontColor"   class="colorInput" />
+					Background						<input id="bgColor" [(colorPicker)]="itemSvc.bgColor"
+							[style.background]="itemSvc.bgColor" [value]="itemSvc.bgColor"  class="colorInput"  />
+						Border
+						<input id="brdColor" [(colorPicker)]="itemSvc.brdColor" 
+							[style.background]="itemSvc.brdColor" [value]="itemSvc.brdColor"  class="colorInput"   />
+						
+											 <a class="colorLink" (click)="this.itemSvc.colorSelect=''">back</a>
+					</div>
+				</div>
+				
+				
+			</div>
+
+		</div>
+	
+		</div>
+		
+
+ </div>
+		
+
+
+
+
+
+
+
+<div id="visualization"></div><input class="button blue" type="button" id="moveLeft" value=" <-" />
+<input class="button blue" type="button" id="moveRight" value=" ->" />
+<input class="button blue"  type="button" id="zoomIn" value="+" />
+<input class="button blue"  type="button" id="zoomOut" value="-" />
+
+		 

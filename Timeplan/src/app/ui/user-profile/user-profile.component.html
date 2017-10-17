@@ -6,56 +6,17 @@
 	<p class="text-truncate"></p>
 	<br>
 
-	<div *ngIf="Location.path() == '/timeline'">
-		<md-slide-toggle id="toggle" [(ngModel)]="itemSvc.editColor" 
-			color="primary">Change colors</md-slide-toggle>
+	
+<div></div>
+<!-- User NOT logged in -->
+<div class="box" *ngIf="!auth.currentUser">
+	<h3>Howdy, {{ auth.currentUserDisplayName }}</h3>
+	<p class="card-text">Login to get started...</p>
+	<button class="button" routerLink="/login">Login</button>
 
-		<div *ngIf="itemSvc.editColor == 1">
-			<div class="columns">
-				<div class="column" *ngIf="itemSvc.colorSelect!='custom'">
-					<md-radio-group [(ngModel)]="itemSvc.colorSelect">
-					<md-radio-button class="column" *ngFor="let col of itemSvc.styleSet" [value]="col" >
-				<div [class]="col[0]">{{col[0]}}</div>	
-			  </md-radio-button>
-			  <div class="column is-2">
-			   <md-radio-button  value="custom">
-					<div class="custom">custom</div>
-					</md-radio-button> 
-					</div>
-			  </md-radio-group>
+</div>
+
 				
- 				</div>
-			</div>
-			<div *ngIf="itemSvc.colorSelect == 'custom'">
-				<div class="columns">
-					<div class="column">Font</div>
-					<div class="column">
-						<input id="fontColor" [(colorPicker)]="itemSvc.fontColor"
-							[style.background]="itemSvc.fontColor"
-							[value]="itemSvc.fontColor" />
-					</div>
-					</div>
-					<div class="columns">
-
-						<div class="column">Background</div>
-						<div class="column">
-							<input id="bgColor" [(colorPicker)]="itemSvc.bgColor"
-								[style.background]="itemSvc.bgColor" [value]="itemSvc.bgColor" />
-						</div>
-					</div>
-					<div class="columns">
-						<div class="column">Border</div>
-						<div class="column">
-							<input id="brdColor" [(colorPicker)]="itemSvc.brdColor"
-								[style.background]="itemSvc.brdColor" [value]="itemSvc.brdColor" />
-
-						</div>
-					</div>
-				</div>
-		</div>
-
-
-	</div>
 	<br>
 	<div class="column" *ngIf="Location.path() == '/items'">
 		<button class="button" routerLink="/timeline">
@@ -67,15 +28,4 @@
 			<md-icon>Create/Edit Item(s)</md-icon>
 		</button>
 	</div>
-
-
-</div>
-<div></div>
-<!-- User NOT logged in -->
-<div class="box" *ngIf="!auth.currentUser">
-	<h3>Howdy, {{ auth.currentUserDisplayName }}</h3>
-	<p class="card-text">Login to get started...</p>
-	<button class="button" routerLink="/login">Login</button>
-
-</div>
-
+	</div>
