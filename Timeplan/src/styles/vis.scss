@@ -867,7 +867,7 @@ div.vis-network div.vis-navigation div.vis-button:active {
   background-color: #D5DDF6;
   display: inline-block;
   z-index: 1;
-  /*overflow: hidden;*/
+  overflow: visible;
 }
 
 .vis-item.vis-selected {
